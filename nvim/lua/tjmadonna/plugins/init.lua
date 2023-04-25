@@ -1,0 +1,8 @@
+require("tjmadonna.plugins.comment")
+require("tjmadonna.plugins.copilot")
+require("tjmadonna.plugins.harpoon")
+require("tjmadonna.plugins.lsp")
+require("tjmadonna.plugins.nvim-cmp")
+require("tjmadonna.plugins.telescope")
+require("tjmadonna.plugins.toggleterm")
+require("tjmadonna.plugins.treesitter")

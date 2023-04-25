@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# zsh
+ln -s $PWD/zsh/.zshrc ~/.zshrc
+ln -s $PWD/zsh/.zsh_profile ~/.zsh_profile
+
+# tmux
+mkdir -p ~/.config/tmux/bin
+touch ~/.config/tmux/projects
+ln -s $PWD/tmux/.tmux.conf ~/.tmux.conf
+ln -s $PWD/tmux/bin/tmux-sessionizer ~/.config/tmux/bin/tmux-sessionizer
+
+# neovim
+ln -s $PWD/nvim ~/.config
