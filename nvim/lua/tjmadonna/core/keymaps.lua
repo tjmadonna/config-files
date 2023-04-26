@@ -12,6 +12,9 @@ keymap.set("i", "kj", "<esc>")
 -- open the project viwer
 keymap.set("n", "<leader>pv", ":Ex<cr>")
 
+-- find string in current working directory as you type
+keymap.set("n", "<leader>ps", "<cmd>Telescope live_grep<cr>")
+
 -- move block of code
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -46,7 +49,7 @@ keymap.set("n", "<leader>tj", "<cmd>silent !tmux split-window -vl 10<CR>")
 keymap.set("n", "<leader>tl", "<cmd>silent !tmux split-window -hl 40<CR>")
 
 -- switch project using tmux
-keymap.set("n", "<C-f>", "<cmd>silent !tmux tmux-sessionizer<CR>")
+-- keymap.set("n", "<C-f>", "<cmd>silent !tmux tmux-sessionizer<CR>")
 
 -- harpoon keymaps
 keymap.set("n", "<leader>pe", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")

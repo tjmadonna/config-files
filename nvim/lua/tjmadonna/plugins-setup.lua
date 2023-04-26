@@ -80,10 +80,13 @@ return packer.startup(function(use)
   use("github/copilot.vim")
 
   -- terminal
-  use("akinsho/toggleterm.nvim")
+  -- use("akinsho/toggleterm.nvim")
 
   -- harpoon
   use("theprimeagen/harpoon")
+
+  -- git fugitive
+  use("tpope/vim-fugitive")
 
   if packer_bootstrap then
     require("packer").sync()
