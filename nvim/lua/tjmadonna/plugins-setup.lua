@@ -87,6 +87,7 @@ return packer.startup(function(use)
 
   -- git fugitive
   use("tpope/vim-fugitive")
+  use("lewis6991/gitsigns.nvim", { tag = "release" })
 
   if packer_bootstrap then
     require("packer").sync()

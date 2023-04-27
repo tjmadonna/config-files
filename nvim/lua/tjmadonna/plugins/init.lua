@@ -1,6 +1,7 @@
 require("tjmadonna.plugins.comment")
 require("tjmadonna.plugins.copilot")
 require("tjmadonna.plugins.fugitive")
+require("tjmadonna.plugins.gitsigns")
 require("tjmadonna.plugins.harpoon")
 require("tjmadonna.plugins.lsp")
 require("tjmadonna.plugins.nvim-cmp")
