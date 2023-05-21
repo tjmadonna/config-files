@@ -62,3 +62,10 @@ keymap.set("n", "<leader>5", "<cmd>lua require('harpoon.ui').nav_file(5)<CR>")
 keymap.set("n", "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<CR>")
 keymap.set("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<CR>")
 keymap.set("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<CR>")
+
+-- git keymaps
+keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
+keymap.set("n", "<leader>gv", "<cmd>GV<CR>")
+keymap.set("n", "<leader>gf", "<cmd>GV!<CR>")
+keymap.set("n", "<leader>gd", "<cmd>GV!<CR>")
+
