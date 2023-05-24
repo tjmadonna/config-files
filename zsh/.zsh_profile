@@ -56,6 +56,7 @@ export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/
 export PATH=$PATH:$HOME/.cargo/bin
 
 # Go
+export PATH=$PATH:$HOME/go/bin
 alias go-coverage="go test -coverprofile=coverage.out ./... && go tool cover -html=coverage.out"
 
 # Set up Node Version Manager (NVM)
