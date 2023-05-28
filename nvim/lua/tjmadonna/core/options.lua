@@ -38,6 +38,9 @@ opt.scrolloff = 8
 
 opt.updatetime = 50
 
+-- auto update buffer when file change
+opt.autoread = true
+
 -- backspace
 -- opt.backspace = "indent,eol,start"
 

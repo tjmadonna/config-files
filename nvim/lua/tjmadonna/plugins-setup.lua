@@ -49,6 +49,10 @@ return packer.startup(function(use)
   -- nightfly colorscheme
   use({ "bluz71/vim-nightfly-colors", as = "nightfly" })
 
+  -- nvim tree
+  use("nvim-tree/nvim-tree.lua")
+  use("nvim-tree/nvim-web-devicons")
+
   -- comment toggling with gc
   use("numToStr/Comment.nvim")
 
