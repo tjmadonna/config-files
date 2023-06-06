@@ -12,3 +12,7 @@ ln -s $PWD/tmux/bin/tmux-sessionizer ~/.config/tmux/bin/tmux-sessionizer
 
 # neovim
 ln -s $PWD/nvim ~/.config
+
+# dap
+mkdir -p ~/.config/dap
+ln -s $PWD/dap/templates ~/.config/dap/templates

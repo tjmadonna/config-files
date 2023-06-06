@@ -42,7 +42,7 @@ opt.updatetime = 50
 opt.autoread = true
 
 -- backspace
--- opt.backspace = "indent,eol,start"
+opt.backspace = "indent,eol,start"
 
 -- split windows
 opt.splitright = true

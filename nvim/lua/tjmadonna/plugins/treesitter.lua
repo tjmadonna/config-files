@@ -11,21 +11,13 @@ if not configs_setup then
 end
 
 configs.setup({
-  ensure_installed = {
-    "css",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "typescript",
-    "vim"
-  },
   sync_install = false,
   auto_install = true,
   highlight = {
     enable = true,
   },
   additional_vim_regex_highlighting = false,
+  ensure_installed = {
+    "lua",
+  },
 })

@@ -9,13 +9,6 @@ local keymap = vim.keymap
 -- use kj to exit insert mode
 keymap.set("i", "kj", "<esc>")
 
--- open the project viwer
--- keymap.set("n", "<leader>pv", ":Ex<cr>")
-keymap.set("n", "<leader>pv", ":NvimTreeToggle<cr>")
-
--- find string in current working directory as you type
-keymap.set("n", "<leader>ps", "<cmd>Telescope live_grep<cr>")
-
 -- move block of code
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -45,16 +38,22 @@ keymap.set("v", "<leader>y", '"+y')
 -- don't use Q
 keymap.set("n", "Q", "<nop>")
 
--- create a small tmux pane
-keymap.set("n", "<leader>tj", "<cmd>silent !tmux split-window -vl 10<CR>")
-keymap.set("n", "<leader>tl", "<cmd>silent !tmux split-window -hl 40<CR>")
+-- Telescope
+keymap.set("n", "<leader>ff", "<Cmd>Telescope find_files<CR>")
+keymap.set("n", "<leader>fg", "<Cmd>Telescope git_files<CR>")
+keymap.set("n", "<leader>fs", "<Cmd>Telescope live_grep<CR>")
+keymap.set("n", "<leader>fk", "<Cmd>Telescope keymaps<CR>")
+keymap.set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>")
 
--- switch project using tmux
--- keymap.set("n", "<C-f>", "<cmd>silent !tmux tmux-sessionizer<CR>")
+-- Toggle term
+keymap.set("n", "<leader>tt", "<Cmd>ToggleTerm<CR>")
 
--- harpoon keymaps
-keymap.set("n", "<leader>pe", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
-keymap.set("n", "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<CR>")
+-- Netrw
+keymap.set("n", "<leader>e", "<Cmd>Ex<CR>")
+
+-- Harpoon
+keymap.set("n", "<leader>he", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
+keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>")
 keymap.set("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>")
 keymap.set("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>")
 keymap.set("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>")
@@ -64,58 +63,14 @@ keymap.set("n", "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<CR>")
 keymap.set("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<CR>")
 keymap.set("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<CR>")
 
--- git keymaps
-keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
-keymap.set("n", "<leader>gv", "<cmd>GV<CR>")
-keymap.set("n", "<leader>gf", "<cmd>GV!<CR>")
-keymap.set("n", "<leader>gd", "<cmd>GV!<CR>")
+-- Dap
+keymap.set("n", "<leader>dd", "<Cmd>lua require('dapui').toggle()<CR>")
+keymap.set("n", "<leader>dh", "<Cmd>lua require('dap.ui.widgets').hover()<CR>")
+keymap.set("n", "<leader>db", "<Cmd>DapToggleBreakpoint<CR>")
+keymap.set("n", "<leader>dc", "<Cmd>DapContinue<CR>")
 
--- dap keymaps
-vim.keymap.set("n", "<F5>", function()
-	require("dap").continue()
-end)
-vim.keymap.set("n", "<F10>", function()
-	require("dap").step_over()
-end)
-vim.keymap.set("n", "<F11>", function()
-	require("dap").step_into()
-end)
-vim.keymap.set("n", "<F12>", function()
-	require("dap").step_out()
-end)
-vim.keymap.set("n", "<leader>b", function()
-	require("dap").toggle_breakpoint()
-end)
-vim.keymap.set("n", "<leader>B", function()
-	require("dap").set_breakpoint()
-end)
--- vim.keymap.set("n", "<leader>lp", function()
--- 	require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
--- end)
-vim.keymap.set("n", "<leader>dr", function()
-	require("dap").repl.open()
-end)
-vim.keymap.set("n", "<leader>dl", function()
-	require("dap").run_last()
-end)
-vim.keymap.set("n", "<leader>dc", function()
-	require("dap").terminate()
-end)
-vim.keymap.set({ "n", "v" }, "<leader>dh", function()
-	require("dap.ui.widgets").hover()
-end)
-vim.keymap.set({ "n", "v" }, "<leader>dp", function()
-	require("dap.ui.widgets").preview()
-end)
-vim.keymap.set("n", "<leader>df", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.sidebar(widgets.frames).toggle()
-end)
-vim.keymap.set("n", "<leader>ds", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.sidebar(widgets.scopes).toggle()
-end)
-vim.keymap.set("n", "<leader>du", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.sidebar(widgets.scopes).toggle()
-end)
+keymap.set("n", "<F5>", "<Cmd>DapContinue<CR>")
+keymap.set("n", "<F6>", "<Cmd>DapTerminate<CR>")
+keymap.set("n", "<F10>", "<Cmd>DapStepOver<CR>")
+keymap.set("n", "<F11>", "<Cmd>DapStepInto<CR>")
+keymap.set("n", "<F12>", "<Cmd>DapStepOut<CR>")

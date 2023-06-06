@@ -1,7 +1,18 @@
 # Add tmux things to path
 export PATH=$PATH:$HOME/.config/tmux/bin
 
+# LunarVim
+export PATH=$PATH:$HOME/.local/bin
+
+# Add Visual Studio Code (code)
+export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
+# Add rust tools to path
+export PATH=$PATH:$HOME/.cargo/bin
+
 export PROJ_FILE=$HOME/.config/tmux/projects
+
+export DAP_TEMPLATES=$HOME/.config/dap/templates
 
 function ff {
     tmux-sessionizer
@@ -49,11 +60,25 @@ function rmff {
     fi
 }
 
-# Add Visual Studio Code (code)
-export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-
-# Add rust tools to path
-export PATH=$PATH:$HOME/.cargo/bin
+function createDebugConfig() {
+    if [ -d "$1" ]; then
+        # check if .vscode directory exists
+        if ! test -d .vscode; then
+            echo "Creating .vscode directory"
+            mkdir .vscode
+        fi
+        # check if launch.json exists in .vscode directory
+        if ! test -f .vscode/launch.json; then
+            echo "Creating launch.json"
+            cp $DAP_TEMPLATES/$1.json .vscode/launch.json
+        else
+            echo "launch.json already exists"
+            return
+        fi
+    else
+        echo "Language not specified"
+    fi
+}
 
 # Go
 export PATH=$PATH:$HOME/go/bin

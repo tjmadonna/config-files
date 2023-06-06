@@ -17,9 +17,3 @@ api.nvim_create_autocmd("FileType", {
 		vim.opt_local.shiftwidth = 2
 	end,
 })
-
--- Refresh nvim tree on git changes
-local tree_group = api.nvim_create_augroup("NvimTreeGitGroup", { clear = true })
-api.nvim_create_autocmd("FugitiveChanged", {
-  group = tree_group,
-})
