@@ -52,16 +52,16 @@ keymap.set("n", "<leader>tt", "<Cmd>ToggleTerm<CR>")
 keymap.set("n", "<leader>e", "<Cmd>Ex<CR>")
 
 -- Harpoon
-keymap.set("n", "<leader>he", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
-keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>")
-keymap.set("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>")
-keymap.set("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>")
-keymap.set("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>")
-keymap.set("n", "<leader>4", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>")
-keymap.set("n", "<leader>5", "<cmd>lua require('harpoon.ui').nav_file(5)<CR>")
-keymap.set("n", "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<CR>")
-keymap.set("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<CR>")
-keymap.set("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<CR>")
+keymap.set("n", "<leader>he", "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
+keymap.set("n", "<leader>ha", "<Cmd>lua require('harpoon.mark').add_file()<CR>")
+keymap.set("n", "<leader>1", "<Cmd>lua require('harpoon.ui').nav_file(1)<CR>")
+keymap.set("n", "<leader>2", "<Cmd>lua require('harpoon.ui').nav_file(2)<CR>")
+keymap.set("n", "<leader>3", "<Cmd>lua require('harpoon.ui').nav_file(3)<CR>")
+keymap.set("n", "<leader>4", "<Cmd>lua require('harpoon.ui').nav_file(4)<CR>")
+keymap.set("n", "<leader>5", "<Cmd>lua require('harpoon.ui').nav_file(5)<CR>")
+keymap.set("n", "<leader>6", "<Cmd>lua require('harpoon.ui').nav_file(6)<CR>")
+keymap.set("n", "<leader>7", "<Cmd>lua require('harpoon.ui').nav_file(7)<CR>")
+keymap.set("n", "<leader>8", "<Cmd>lua require('harpoon.ui').nav_file(8)<CR>")
 
 -- Dap
 keymap.set("n", "<leader>dd", "<Cmd>lua require('dapui').toggle()<CR>")
@@ -74,3 +74,6 @@ keymap.set("n", "<F6>", "<Cmd>DapTerminate<CR>")
 keymap.set("n", "<F10>", "<Cmd>DapStepOver<CR>")
 keymap.set("n", "<F11>", "<Cmd>DapStepInto<CR>")
 keymap.set("n", "<F12>", "<Cmd>DapStepOut<CR>")
+
+-- ToggleTerm
+keymap.set("n", "<leader>g", "<Cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
