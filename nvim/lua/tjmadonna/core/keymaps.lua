@@ -47,6 +47,7 @@ keymap.set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>")
 
 -- Toggle term
 keymap.set("n", "<leader>tt", "<Cmd>ToggleTerm<CR>")
+keymap.set("n", "<leader>gg", "<Cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- Netrw
 keymap.set("n", "<leader>e", "<Cmd>Ex<CR>")
