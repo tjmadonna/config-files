@@ -74,6 +74,3 @@ keymap.set("n", "<F6>", "<Cmd>DapTerminate<CR>")
 keymap.set("n", "<F10>", "<Cmd>DapStepOver<CR>")
 keymap.set("n", "<F11>", "<Cmd>DapStepInto<CR>")
 keymap.set("n", "<F12>", "<Cmd>DapStepOut<CR>")
-
--- ToggleTerm
-keymap.set("n", "<leader>g", "<Cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
