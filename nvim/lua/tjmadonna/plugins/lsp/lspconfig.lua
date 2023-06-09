@@ -18,6 +18,7 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- show definition, references
 	keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- show declaration
+	keymap.set("n", "gh", vim.lsp.buf.hover, opts) -- show hover
 
 	keymap.set("n", "<leader>l", vim.lsp.buf.format, opts) -- format buffer with leader
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]]) -- format buffer with :Format
