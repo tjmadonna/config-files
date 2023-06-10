@@ -25,13 +25,13 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 
 -- find the word in the buffer under the cursor
-keymap.set("n", "<leader>fw", "/<<C-r><C-w>><CR>")
+keymap.set("n", "<leader>fw", ":/<C-r><C-w><CR>")
 
 -- find the symbol globally under the cursor
 keymap.set("n", "<leader>fS", ":Telescope grep_string<CR>")
 
 -- replace word under cursor
-keymap.set("n", "<leader>fr", ":%s/<<C-r><C-w>>//g<Left><Left>")
+keymap.set("n", "<leader>fr", ":%s/<C-r><C-w>//g<Left><Left>")
 
 -- copy, paste over something but maintain copied text
 keymap.set("x", "<leader>p", '"_dP')
