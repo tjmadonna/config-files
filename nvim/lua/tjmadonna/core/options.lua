@@ -14,7 +14,7 @@ opt.autoindent = true
 opt.listchars = "tab:| ,lead:·,trail:·,eol:$"
 
 -- show ruler line at end of line
-opt.colorcolumn = "80,130"
+opt.colorcolumn = "80,120"
 
 -- line wrapping
 opt.wrap = false
