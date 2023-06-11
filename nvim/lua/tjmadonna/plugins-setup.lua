@@ -55,6 +55,8 @@ return packer.startup(function(use)
 	-- toggle terminal
 	use("akinsho/toggleterm.nvim")
 
+  -- nvim-tree
+  use("nvim-tree/nvim-tree.lua")
   use("lewis6991/gitsigns.nvim", { tag = "release" })
 
 	-- syntax highlighting
