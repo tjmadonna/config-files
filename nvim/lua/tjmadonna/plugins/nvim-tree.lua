@@ -111,4 +111,7 @@ tree.setup({
 			".DS_Store",
 		},
 	},
+  git = {
+    ignore = false,
+  },
 })
