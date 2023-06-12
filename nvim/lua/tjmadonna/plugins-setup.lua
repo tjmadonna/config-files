@@ -98,6 +98,7 @@ return packer.startup(function(use)
   use("mfussenegger/nvim-dap")
   use("rcarriga/nvim-dap-ui")
   use("folke/neodev.nvim")
+  use("mxsdev/nvim-dap-vscode-js")
 
 	if packer_bootstrap then
 		require("packer").sync()

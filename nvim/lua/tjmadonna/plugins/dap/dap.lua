@@ -16,6 +16,13 @@ if not neodev_setup then
 	return
 end
 
+local dapjs_setup, dapjs = pcall(require, "dap-vscode-js")
+if not dapjs_setup then
+	print("dap-vscode-js not found!")
+	return
+end
+
+
 dapui.setup()
 
 neodev.setup({
@@ -93,29 +100,23 @@ dap.configurations.python = {
 	},
 }
 
--- Javascript/Typescript
-dap.adapters["pwa-node"] = {
-	type = "server",
-	host = "localhost",
-	port = "${port}",
-	executable = {
-		command = "node",
-		args = function()
-			local dapFile = os.getenv("HOME") .. "/.config/dap/vscode-js-debug/src/dapDebugServer.js"
-			return { dapFile, "${port}" }
-		end,
-	},
-}
+dapjs.setup({
+    adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+    debugger_path = os.getenv("HOME") .. "/.config/dap/vscode-js-debug"
+})
 
-dap.configurations.javascript = {
-	{
-		type = "pwa-node",
-		request = "launch",
-		name = "Launch file",
-		program = "${file}",
-		cwd = "${workspaceFolder}",
-	},
-}
+-- for _, language in ipairs({ "typescript", "javascript" }) do
+--   dap.configurations[language] = {
+--     {
+--       type = "pwa-chrome",
+--       request = "launch",
+--       name = "Launch Chrome against localhost",
+--       url = "http://localhost:3000",
+--       webRoot = "${workspaceFolder}/src",
+--       cwd = "${workspaceFolder}/src"
+--     },
+--   }
+-- end
 
 -- Go
 dap.adapters.go = {
@@ -136,4 +137,5 @@ end, {})
 
 vim.api.nvim_create_user_command("DapLaunchLoad", function()
 	dap_launch.DapLaunchLoad(true)
+  vim.inspect(dap.configurations)
 end, {})
