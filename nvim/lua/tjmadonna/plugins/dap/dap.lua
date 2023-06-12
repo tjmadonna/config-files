@@ -119,10 +119,21 @@ dap.configurations.javascript = {
 
 -- Go
 dap.adapters.go = {
-  type = "server",
-  port = "${port}",
-  executable = {
-    command = "dlv",
-    args = {"dap", "-l", "127.0.0.1:${port}"},
-  }
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = "dlv",
+		args = { "dap", "-l", "127.0.0.1:${port}" },
+	},
 }
+
+local dap_launch = require("tjmadonna.plugins.dap.dap-launch")
+dap_launch.DapLaunchLoad(false)
+
+vim.api.nvim_create_user_command("DapLaunchCreate", function()
+	dap_launch.DapLaunchCreate()
+end, {})
+
+vim.api.nvim_create_user_command("DapLaunchLoad", function()
+	dap_launch.DapLaunchLoad(true)
+end, {})
