@@ -14,6 +14,8 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
+bindkey '^k' autosuggest-accept
+
 source $ZSH/oh-my-zsh.sh
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
