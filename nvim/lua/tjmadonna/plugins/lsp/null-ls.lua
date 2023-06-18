@@ -1,8 +1,4 @@
-local null_ls_setup, null_ls = pcall(require, "null-ls")
-if not null_ls_setup then
-	print("null-ls not found!")
-	return
-end
+local null_ls = require("null-ls")
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics

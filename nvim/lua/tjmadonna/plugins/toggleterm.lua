@@ -1,8 +1,4 @@
-local toggleterm_setup, toggleterm = pcall(require, "toggleterm")
-if not toggleterm_setup then
-	print("toggleterm not found!")
-	return
-end
+local toggleterm = require("toggleterm")
 
 toggleterm.setup({
 	direction = "float",
@@ -19,6 +15,6 @@ local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
 -- Lazy git
-function lazygit_toggle()
+function Lazygit_toggle()
   lazygit:toggle()
 end

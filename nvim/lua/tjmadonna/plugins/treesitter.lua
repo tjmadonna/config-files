@@ -1,14 +1,4 @@
-local treesitter_setup, treesitter = pcall(require, "nvim-treesitter")
-if not treesitter_setup then
-  print("treesitter not found!")
-  return
-end
-
-local configs_setup, configs = pcall(require, "nvim-treesitter.configs")
-if not configs_setup then
-  print("treesitter configs not found!")
-  return
-end
+local configs = require("nvim-treesitter.configs")
 
 configs.setup({
   sync_install = false,
@@ -18,6 +8,15 @@ configs.setup({
   },
   additional_vim_regex_highlighting = false,
   ensure_installed = {
+    "css",
+    "dockerfile",
+    "go",
+    "html",
+    "javascript",
+    "json",
     "lua",
+    "markdown",
+    "python",
+    "typescript",
   },
 })

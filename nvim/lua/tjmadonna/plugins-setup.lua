@@ -47,17 +47,27 @@ return packer.startup(function(use)
 	use("nvim-lua/popup.nvim")
 
 	-- colorschemes
-	use("folke/tokyonight.nvim")
+	use({
+		"folke/tokyonight.nvim",
+		config = function()
+			vim.cmd.colorscheme("tokyonight-night")
+		end,
+	})
 
 	-- telescope
-	use({ "nvim-telescope/telescope.nvim", tag = "0.1.1", requires = { "nvim-lua/plenary.nvim" } })
+	use({ "nvim-telescope/telescope.nvim", tag = "0.1.1" })
 
 	-- toggle terminal
 	use("akinsho/toggleterm.nvim")
 
-  -- nvim-tree
-  use("nvim-tree/nvim-tree.lua")
-  use("lewis6991/gitsigns.nvim", { tag = "release" })
+	-- nvim-tree
+	use("nvim-tree/nvim-tree.lua")
+	use("lewis6991/gitsigns.nvim", {
+		tag = "release",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 
 	-- syntax highlighting
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
@@ -91,14 +101,11 @@ return packer.startup(function(use)
 	-- copilot
 	use("github/copilot.vim")
 
-	-- harpoon
-	use("theprimeagen/harpoon")
-
-  -- debugging
-  use("mfussenegger/nvim-dap")
-  use("rcarriga/nvim-dap-ui")
-  use("folke/neodev.nvim")
-  use("mxsdev/nvim-dap-vscode-js")
+	-- debugging
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
+	use("folke/neodev.nvim")
+	use("mxsdev/nvim-dap-vscode-js")
 
 	if packer_bootstrap then
 		require("packer").sync()

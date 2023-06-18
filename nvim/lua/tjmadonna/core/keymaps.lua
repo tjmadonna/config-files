@@ -49,7 +49,7 @@ keymap.set("n", "<leader>fW", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace
 
 -- Toggle term
 keymap.set("n", "<leader>tt", "<Cmd>ToggleTerm<CR>", { desc = "Open Terminal", noremap = true, silent = true })
-keymap.set("n", "<leader>gg", "<Cmd>lua lazygit_toggle()<CR>", { desc = "Open LazyGit", noremap = true, silent = true })
+keymap.set("n", "<leader>gg", "<Cmd>lua Lazygit_toggle()<CR>", { desc = "Open LazyGit", noremap = true, silent = true })
 
 -- Nvim tree
 -- keymap.set("n", "<leader>e", "<Cmd>Ex<CR>")

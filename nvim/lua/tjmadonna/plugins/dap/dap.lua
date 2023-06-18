@@ -1,27 +1,10 @@
-local dap_setup, dap = pcall(require, "dap")
-if not dap_setup then
-	print("nvim-dap not found!")
-	return
-end
+local dap = require("dap")
 
-local dapui_setup, dapui = pcall(require, "dapui")
-if not dapui_setup then
-	print("nvim-dap-ui not found!")
-	return
-end
+local dapui = require("dapui")
 
-local neodev_setup, neodev = pcall(require, "neodev")
-if not neodev_setup then
-	print("neodev not found!")
-	return
-end
+local neodev = require("neodev")
 
-local dapjs_setup, dapjs = pcall(require, "dap-vscode-js")
-if not dapjs_setup then
-	print("dap-vscode-js not found!")
-	return
-end
-
+local dapjs = require("dap-vscode-js")
 
 dapui.setup()
 

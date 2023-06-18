@@ -1,19 +1,11 @@
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then
-	print("lspconfig not found!")
-	return
-end
+local lspconfig = require("lspconfig")
 
-local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then
-	print("cmp_nvim_lsp not found!")
-	return
-end
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 local keymap = vim.keymap
 
 -- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- show definition, references

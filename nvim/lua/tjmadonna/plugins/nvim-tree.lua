@@ -1,8 +1,4 @@
-local tree_setup, tree = pcall(require, "nvim-tree")
-if not tree_setup then
-	print("nvim-tree not found!")
-	return
-end
+local tree = require("nvim-tree")
 
 -- disable netrw
 vim.g.loaded_netrw = 1
