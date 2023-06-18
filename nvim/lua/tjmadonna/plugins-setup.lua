@@ -62,12 +62,11 @@ return packer.startup(function(use)
 
 	-- nvim-tree
 	use("nvim-tree/nvim-tree.lua")
-	use("lewis6991/gitsigns.nvim", {
-		tag = "release",
-		config = function()
-			require("gitsigns").setup()
-		end,
-	})
+	use("lewis6991/gitsigns.nvim", { tag = "release" })
+
+	-- bufferline
+	use("akinsho/nvim-bufferline.lua")
+	use("nvim-tree/nvim-web-devicons")
 
 	-- syntax highlighting
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })

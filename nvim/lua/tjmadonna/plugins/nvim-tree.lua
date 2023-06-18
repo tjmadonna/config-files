@@ -71,6 +71,7 @@ end
 
 tree.setup({
 	on_attach = on_attach_tree,
+  hijack_netrw = false,
 	sort_by = "case_sensitive",
 	renderer = {
 		group_empty = true,
