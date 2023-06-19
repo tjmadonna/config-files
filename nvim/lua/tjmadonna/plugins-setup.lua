@@ -68,6 +68,9 @@ return packer.startup(function(use)
 	use("akinsho/nvim-bufferline.lua")
 	use("nvim-tree/nvim-web-devicons")
 
+  -- lualine
+  use("nvim-lualine/lualine.nvim")
+
 	-- syntax highlighting
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
@@ -92,16 +95,18 @@ return packer.startup(function(use)
 	use("rafamadriz/friendly-snippets") -- a bunch of useful snippets
 
 	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/mason.nvim") -- simple to use language server installer
+	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/mason-lspconfig.nvim") -- simple to use language server installer
-	use("jose-elias-alvarez/null-ls.nvim") -- LSP diagnostics and code actions
+	use("jose-elias-alvarez/null-ls.nvim") -- LSP formatter & diagnostics and code actions
+	use("jay-babu/mason-null-ls.nvim") -- simple to use formatter & diagnostics installer
 
 	-- copilot
 	use("github/copilot.vim")
 
 	-- debugging
 	use("mfussenegger/nvim-dap")
+	use("jay-babu/mason-nvim-dap.nvim")
 	use("rcarriga/nvim-dap-ui")
 	use("folke/neodev.nvim")
 	use("mxsdev/nvim-dap-vscode-js")

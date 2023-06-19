@@ -7,17 +7,17 @@ local action_state = require("telescope.actions.state")
 local M = {}
 
 local template_configs = {
-  {
-    name = "Chrome",
-    config = {
-      type = "pwa-chrome",
-      request = "launch",
-      name = "Launch Chrome against localhost",
-      url = "http://localhost:3000",
-      webRoot = "${workspaceFolder}/src",
-      cwd = "${workspaceFolder}/src"
-    },
-  },
+	{
+		name = "Chrome",
+		config = {
+			type = "pwa-chrome",
+			request = "launch",
+			name = "Launch Chrome against localhost",
+			url = "http://localhost:3000",
+			webRoot = "${workspaceFolder}/src",
+			cwd = "${workspaceFolder}/src",
+		},
+	},
 	{
 		name = "Go",
 		config = {
@@ -61,7 +61,9 @@ local template_configs = {
 }
 
 local type_to_filetypes = {
-  ["pwa-chrome"] = { "javascript", "typescript" },
+	["pwa-chrome"] = { "javascript", "typescript" },
+	["go"] = { "go" },
+	["python"] = { "python" },
 }
 
 local function _write_to_launch_file(launch)
@@ -105,7 +107,7 @@ function M.DapLaunchCreate(opts)
 				end,
 			}),
 			sorter = conf.generic_sorter(opts),
-			attach_mappings = function(prompt_bufnr, map)
+			attach_mappings = function(prompt_bufnr, _)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()

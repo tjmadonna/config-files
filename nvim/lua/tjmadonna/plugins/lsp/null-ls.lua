@@ -1,28 +1,16 @@
 local null_ls = require("null-ls")
+null_ls.setup()
 
-local formatting = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
-
-null_ls.setup({
-	debug = false,
-	sources = {
-		formatting.autopep8,
-		formatting.prettierd.with({
-			{
-				"css",
-				"html",
-				"javascript",
-				"javascriptreact",
-				"json",
-				"jsonc",
-				"markdown",
-				"scss",
-				"typescript",
-				"typescriptreact",
-				"yaml",
-			},
-		}),
-		formatting.stylua,
-		diagnostics.golangci_lint,
+require("mason-null-ls").setup({
+	ensure_installed = {
+		"golangci_lint",
+		"prettierd",
+		"stylua",
+	},
+	automatic_installation = false,
+	handlers = {
+		function(source_name, methods)
+			require("mason-null-ls").default_setup(source_name, methods)
+		end,
 	},
 })
