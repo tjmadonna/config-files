@@ -1,0 +1,107 @@
+"leader as space
+let mapleader = " "
+
+"""""""""""""""""""""""
+"" General Keymaps
+"""""""""""""""""""""""
+
+:imap kj <Esc>
+
+"move block of code up and down
+:vmap K :m '<-2<CR>gv=gv
+:vmap J :m '>+1<CR>gv=gv
+
+"append below line to current line with a space
+:nnoremap J mzJ`z
+
+"half page jumping with cursor in same spot
+:nmap <C-d> <C-d>zz
+:nmap <C-u> <C-u>zz
+
+"keep search term in the middle when searching
+:nmap n nzzzv
+:nmap N Nzzzv
+
+"copy, paste over something but maintain copied text
+:xmap <leader>p \"_dP
+
+"delete to void register
+:nmap <leader>d \"_d
+:vmap <leader>d \"_d
+
+"copy to system clipboard
+:nmap <leader>y \"+y
+:vmap <leader>y \"+y
+
+"don't use Q
+:nmap Q <nop>
+
+"""""""""""""""""""""""
+"" Map IDE Actions
+"""""""""""""""""""""""
+
+:nmap <leader>e :NERDTreeFocus<CR>
+:nmap <leader>t <Action>(ActivateTerminalToolWindow)
+:nmap <leader>z <Action>(ToggleDistractionFreeMode)
+
+:nmap <leader>lf <Action>(ReformatCode)
+:nmap <leader>ff <Action>(GotoFile)
+:nmap <leader>ft <Action>(GotoClass)
+:nmap <leader>fs <Action>(GotoSymbol)
+:nmap <leader>fb <Action>(RecentFiles)
+:nmap <leader>fe <Action>(SearchEverywhere)
+
+:nmap <c-c> <Action>(EditorEscape)
+
+"""""""""""""""""""""""
+"" Options
+"""""""""""""""""""""""
+
+"line numbers
+set nu
+set relativenumber
+
+"tabs and indentation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+
+"show spaces on :set list!
+set listchars=tab:| ,lead:·,trail:·,eol:$
+
+"show ruler at end of line
+set colorcolumn=80,120
+
+"line wrapping
+set wrap
+
+"search settings
+set ignorecase
+set smartcase
+set hlsearch=0
+set incsearch
+
+"cursor line
+set cursorline
+
+"appearance
+set background=dark
+
+"scrolling
+set scrolloff=8
+
+set updatetime=50
+
+"split window
+set splitright
+set splitbelow
+
+"keywords
+set iskeyword+=-
+
+"""""""""""""""""""""""
+"" Plugins
+"""""""""""""""""""""""
+
+Plug 'preservim/nerdtree'

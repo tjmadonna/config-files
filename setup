@@ -17,6 +17,9 @@ ln -s $PWD/nvim ~/.config
 mkdir -p ~/.config/dap
 ln -s $PWD/dap/templates ~/.config/dap
 
+# idea
+ln -s $PWD/idea/.ideavimrc ~/.ideavimrc
+
 # check if debugpy environment is already created
 if [ ! -d ~/.config/dap/debugpy ]; then
     python3 -m venv ~/.config/dap/debugpy
