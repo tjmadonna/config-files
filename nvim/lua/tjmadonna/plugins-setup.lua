@@ -74,6 +74,8 @@ return packer.startup(function(use)
 	-- syntax highlighting
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
+  use("RRethy/vim-illuminate")
+
 	-- comment toggling with gc
 	use({
 		"numToStr/Comment.nvim",
