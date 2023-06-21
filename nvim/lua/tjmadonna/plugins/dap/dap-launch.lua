@@ -30,12 +30,14 @@ local template_configs = {
 	{
 		name = "Python",
 		config = {
-			name = "Python",
 			type = "python",
+			program = "main.py",
 			request = "launch",
-			program = "${file}",
+			cwd = "${workspaceFolder}/src",
 			console = "integratedTerminal",
 			justMyCode = true,
+			name = "Python",
+			args = {},
 		},
 	},
 	{
@@ -45,9 +47,10 @@ local template_configs = {
 			type = "python",
 			request = "launch",
 			module = "flask",
+			cwd = "${workspaceFolder}/src",
 			env = {
 				FLASK_APP = "app.py",
-				FLASK_DEBUG = "1",
+				FLASK_DEBUG = 1,
 			},
 			args = {
 				"run",
