@@ -1,7 +1,6 @@
-local null_ls = require("null-ls")
-null_ls.setup()
+local mason_null_ls = require("mason-null-ls")
 
-require("mason-null-ls").setup({
+mason_null_ls.setup({
 	ensure_installed = {
 		"golangci_lint",
 		"prettierd",
@@ -10,7 +9,7 @@ require("mason-null-ls").setup({
 	automatic_installation = false,
 	handlers = {
 		function(source_name, methods)
-			require("mason-null-ls").default_setup(source_name, methods)
+			mason_null_ls.default_setup(source_name, methods)
 		end,
 	},
 })

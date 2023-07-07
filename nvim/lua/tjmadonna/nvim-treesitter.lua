@@ -18,5 +18,6 @@ configs.setup({
     "markdown",
     "python",
     "typescript",
+    "yaml",
   },
 })
