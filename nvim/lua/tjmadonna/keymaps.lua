@@ -47,12 +47,7 @@ keymap.set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "Find Buffe
 keymap.set("n", "<leader>fw", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace Word Under Cursor" })
 
 -- Toggle term
-keymap.set("n", "<leader>tt", "<Cmd>ToggleTerm size=10 direction=horizontal<CR>", { desc = "Open Bottom Terminal", noremap = true, silent = true })
-keymap.set("n", "<leader>tf", "<Cmd>ToggleTerm direction=float<CR>", { desc = "Open Floating Terminal", noremap = true, silent = true })
 keymap.set("n", "<leader>gg", "<Cmd>lua Lazygit_toggle()<CR>", { desc = "Open LazyGit", noremap = true, silent = true })
-
--- NeoTree
--- keymap.set("n", "<leader>e", "<Cmd>NeoTreeShowToggle<CR>")
 
 -- NvimTree
 keymap.set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")

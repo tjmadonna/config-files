@@ -37,16 +37,6 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
     },
   },
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v2.x",
-  --   dependencies = { 
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --     "lewis6991/gitsigns.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --   }
-  -- },
   {
     "shortcuts/no-neck-pain.nvim",
     version = "*",
