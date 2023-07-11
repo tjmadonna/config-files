@@ -6,6 +6,13 @@ local colors = require("tjmadonna.gruvbox")
 local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.3  -- You can change this too
 
+local function title(path)
+  -- local cwd = vim.fn.getcwd(0)
+  local cwd = path
+  local dir = vim.fn.split(cwd, "/")
+  return vim.fn.toupper(dir[#dir])
+end
+
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -36,7 +43,7 @@ require("nvim-tree").setup({
     end,
   },
   renderer = {
-    root_folder_label = true,
+    root_folder_label = title,
     icons = {
       show = {
         file = true,
