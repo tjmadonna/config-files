@@ -53,6 +53,17 @@ let mapleader = " "
 
 :nmap <c-c> <Action>(EditorEscape)
 
+:nmap <leader>1 :b1<CR>
+:nmap <leader>2 :b2<CR>
+:nmap <leader>3 :b3<CR>
+:nmap <leader>4 :b4<CR>
+:nmap <leader>5 :b5<CR>
+:nmap <leader>6 :b6<CR>
+:nmap <leader>7 :b7<CR>
+:nmap <leader>8 :b8<CR>
+
+:nmap <leader>bd :bd<CR>
+
 """""""""""""""""""""""
 "" Options
 """""""""""""""""""""""
