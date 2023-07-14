@@ -1,7 +1,11 @@
 require("no-neck-pain").setup({
-  width = 130,
   autocmds = {
     enableOnVimEnter = false,
+  },
+  buffers = {
+    right = {
+      enabled = false,
+    }
   },
   mappings = {
     enabled = true,

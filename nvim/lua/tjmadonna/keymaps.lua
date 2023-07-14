@@ -56,6 +56,8 @@ keymap.set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")
 keymap.set("n", "<leader>bp", "<Cmd>BufferLineCyclePrev<CR>")
 keymap.set("n", "<leader>bn", "<Cmd>BufferLineCycleNext<CR>")
 keymap.set("n", "<leader>bd", "<Cmd>bd<CR>")
+keymap.set("n", "<leader>b.", "<Cmd>BufferLineMoveNext<CR>")
+keymap.set("n", "<leader>b,", "<Cmd>BufferLineMovePrev<CR>")
 
 keymap.set("n", "<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>")
 keymap.set("n", "<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>")
