@@ -38,7 +38,7 @@ keymap.set("v", "<leader>y", '"+y')
 keymap.set("n", "Q", "<nop>")
 
 -- Telescope
-keymap.set("n", "<leader>ff", "<Cmd>Telescope find_files<CR>", { desc = "Find Files" })
+keymap.set("n", "<leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { desc = "Find Files" })
 keymap.set("n", "<leader>fg", "<Cmd>Telescope git_files<CR>", { desc = "Find Git Files" })
 keymap.set("n", "<leader>fs", "<Cmd>Telescope live_grep<CR>", { desc = "Find String" })
 keymap.set("n", "<leader>fS", ":Telescope grep_string<CR>", { desc = "Find String Under Cursor" })
