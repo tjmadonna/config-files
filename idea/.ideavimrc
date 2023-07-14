@@ -36,6 +36,9 @@ let mapleader = " "
 "don't use Q
 :nmap Q <nop>
 
+
+
+
 """""""""""""""""""""""
 "" Map IDE Actions
 """""""""""""""""""""""
@@ -52,6 +55,14 @@ let mapleader = " "
 :nmap <leader>fe <Action>(SearchEverywhere)
 
 :nmap <c-c> <Action>(EditorEscape)
+
+:nmap gcc <Action>(CommentByLineComment)
+:vmap gc <Action>(CommentByLineComment)
+
+:nmap <leader>gd <Action>(GotoDefinition)
+:nmap <leader>gD <Action>(GotoDeclaration)
+
+:nmap <leader>rn <Action>(RenameElement)
 
 :nmap <leader>1 :b1<CR>
 :nmap <leader>2 :b2<CR>
