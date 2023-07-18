@@ -89,13 +89,5 @@ require("bufferline").setup({
       icon = "",
       style = "",
     },
-    offsets = {
-      {
-        filetype = "NvimTree",
-        text = title,
-        text_align = "left",
-        separator = true,
-      },
-    },
   },
 })
