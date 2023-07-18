@@ -12,7 +12,7 @@ end
 
 
 local function on_attach(bufnr)
-  local api = require "nvim-tree.api"
+  local api = require("nvim-tree.api")
 
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -23,7 +23,6 @@ local function on_attach(bufnr)
 
   -- custom mappings
   vim.keymap.set("n", "<C-c>", api.tree.close, opts("Close"))
-  print("nvim-tree: attached to bufnr")
 end
 
 require("nvim-tree").setup({
