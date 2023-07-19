@@ -13,7 +13,6 @@ require("bufferline").setup({
     },
     background = {
       bg = colors.dark1,
-      -- fg = colors.text,
     },
     close_button = {
       bg = colors.dark1,
@@ -26,14 +25,12 @@ require("bufferline").setup({
     },
     buffer_visible = {
       bg = colors.dark1,
-      -- fg = colors.text,
     },
     buffer_selected = {
       bg = colors.dark0_hard,
     },
     numbers = {
       bg = colors.dark1,
-      -- fg = colors.text,
     },
     numbers_visible = {
       bg = colors.dark1,
@@ -42,19 +39,33 @@ require("bufferline").setup({
       bg = colors.dark0_hard,
     },
     separator = {
-      bg = colors.dark0_hard,
+      bg = colors.dark1,
+    },
+    separator_selected = {
+      bg = colors.dark1,
+    },
+    separator_visible = {
+      bg = colors.dark1,
     },
     offset_separator = {
+      bg = colors.dark1,
+    },
+    duplicate_selected = {
+      bg = colors.dark0_hard,
+      fg = colors.text,
+    },
+    duplicate_visible = {
+      bg = colors.dark1,
+    },
+    duplicate = {
+      bg = colors.dark1,
+    },
+    indicator_visible = {
+      bg = colors.dark1,
+    },
+    indicator_selected = {
       bg = colors.dark0_hard,
     },
-
-
-    -- separator_selected = {
-    --   bg = "#FF0000",
-    -- },
-    -- separator_visible = {
-    --   bg = "#00FF00",
-    -- },
     -- tab = {
     --   bg = "#00FF00",
     -- },
@@ -84,7 +95,7 @@ require("bufferline").setup({
     numbers = "ordinal",
     themable = true,
     show_buffer_icons = false,
-    separator_style = {"", ""},
+    separator_style = { "", "" },
     indicator = {
       icon = "",
       style = "",

@@ -30,7 +30,7 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     signcolumn = "no",
-    width = "20%",
+    width = "15%",
   },
   renderer = {
     root_folder_label = title,
