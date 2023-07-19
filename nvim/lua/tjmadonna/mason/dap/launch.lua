@@ -98,7 +98,7 @@ function M.DapLaunchCreate(opts)
 
 	pickers
 		.new(opts, {
-			prompt_title = "colors",
+			prompt_title = "Dap Configurations",
 			finder = finders.new_table({
 				results = template_configs,
 				entry_maker = function(entry)

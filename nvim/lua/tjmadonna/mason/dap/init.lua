@@ -101,7 +101,6 @@ end, {})
 
 vim.api.nvim_create_user_command("DapLaunchLoad", function()
 	dap_launch.DapLaunchLoad(true)
-	vim.inspect(dap.configurations)
 end, {})
 
 vim.api.nvim_create_user_command("DapScopesExpand", function()
