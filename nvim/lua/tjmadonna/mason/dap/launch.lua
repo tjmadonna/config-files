@@ -28,6 +28,17 @@ local template_configs = {
 		},
 	},
 	{
+		name = "Go Docker",
+		config = {
+      name = "Debug Go in Docker",
+      type = "go",
+      request = "attach",
+      mode = "remote",
+      port = 8000,
+      host = "127.0.0.1"
+		},
+	},
+	{
 		name = "Python",
 		config = {
 			type = "python",
