@@ -93,14 +93,18 @@ dapjs.setup({
 })
 
 local dap_launch = require("tjmadonna.mason.dap.launch")
-dap_launch.DapLaunchLoad(false)
+dap_launch.DapLaunchLoad()
 
 vim.api.nvim_create_user_command("DapLaunchCreate", function()
 	dap_launch.DapLaunchCreate()
 end, {})
 
 vim.api.nvim_create_user_command("DapLaunchLoad", function()
-	dap_launch.DapLaunchLoad(true)
+	dap_launch.DapLaunchLoad()
+end, {})
+
+vim.api.nvim_create_user_command("DapLaunchOpen", function()
+  dap_launch.DapLaunchOpen()
 end, {})
 
 vim.api.nvim_create_user_command("DapScopesExpand", function()

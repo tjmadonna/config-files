@@ -154,16 +154,24 @@ function M.DapLaunchCreate(opts)
 		:find()
 end
 
-function M.DapLaunchLoad(show_error)
-	local show = show_error or true
-
+function M.DapLaunchLoad()
 	if vim.fn.filereadable("./.vscode/launch.json") == 1 then
-		require("dap.ext.vscode").load_launchjs(nil, type_to_filetypes)
+    if pcall(require("dap.ext.vscode").load_launchjs, nil, type_to_filetypes) then
+      print("launch.json loaded")
+    else
+      print("launch.json could not be loaded")
+    end
 	else
-		if show then
-			print("launch.json does not exist")
-		end
+	  print("launch.json does not exist")
 	end
+end
+
+function M.DapLaunchOpen()
+  if vim.fn.filereadable("./.vscode/launch.json") == 1 then
+    vim.cmd("edit ./.vscode/launch.json")
+  else
+    print("launch.json does not exist")
+  end
 end
 
 return M
