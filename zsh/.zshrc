@@ -14,7 +14,10 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
+# vim keybindings
+bindkey kj vi-cmd-mode
 bindkey '^k' autosuggest-accept
+bindkey -v
 
 source $ZSH/oh-my-zsh.sh
 
