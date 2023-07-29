@@ -13,14 +13,14 @@ require("mason-lspconfig").setup({
     "pyright",
     "tsserver",
   },
-  automatic_installation = false,
+  automatic_installation = true,
 })
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn",  text = "" },
-  { name = "DiagnosticSignHint",  text = "" },
-  { name = "DiagnosticSignInfo",  text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
 }
 for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
@@ -61,6 +61,8 @@ local on_attach = function(client, bufnr)
   keymap.set("n", "K", vim.lsp.buf.hover, opts)                     -- show hover
   keymap.set("n", "gi", vim.lsp.buf.implementation, opts)           -- show implementation
   keymap.set("n", "gl", vim.diagnostic.open_float, opts)            -- show errors in popup
+  keymap.set("n", "ga", vim.lsp.buf.code_action, opts)              -- show code actions
+  keymap.set("n", "gr", vim.lsp.buf.references, opts)               -- show references
 
   keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)           -- format buffer with leader
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]]) -- format buffer with :Format
