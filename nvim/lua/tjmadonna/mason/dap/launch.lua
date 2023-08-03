@@ -30,12 +30,12 @@ local template_configs = {
 	{
 		name = "Go Docker",
 		config = {
-      name = "Debug Go in Docker",
-      type = "go",
-      request = "attach",
-      mode = "remote",
-      port = 8000,
-      host = "127.0.0.1"
+			name = "Debug Go in Docker",
+			type = "go",
+			request = "attach",
+			mode = "remote",
+			port = 8000,
+			host = "127.0.0.1",
 		},
 	},
 	{
@@ -49,6 +49,7 @@ local template_configs = {
 			justMyCode = true,
 			name = "Python",
 			args = {},
+      pythonPath = "${workspaceFolder}/venv/bin/python",
 		},
 	},
 	{
@@ -70,12 +71,13 @@ local template_configs = {
 			},
 			jinja = true,
 			justMyCode = true,
+      pythonPath = "${workspaceFolder}/venv/bin/python",
 		},
 	},
 }
 
 local type_to_filetypes = {
-	["pwa-chrome"] = { "javascript", "typescript" },
+	["pwa-chrome"] = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
 	["go"] = { "go" },
 	["python"] = { "python" },
 }
@@ -167,22 +169,24 @@ end
 
 function M.DapLaunchLoad()
 	if vim.fn.filereadable("./.vscode/launch.json") == 1 then
-    if pcall(require("dap.ext.vscode").load_launchjs, nil, type_to_filetypes) then
-      print("launch.json loaded")
-    else
-      print("launch.json could not be loaded")
-    end
+		if pcall(require("dap.ext.vscode").load_launchjs, nil, type_to_filetypes) then
+			print("launch.json loaded")
+		else
+			print("launch.json could not be loaded")
+		end
 	else
-	  print("launch.json does not exist")
+		print("launch.json does not exist")
 	end
 end
 
 function M.DapLaunchOpen()
-  if vim.fn.filereadable("./.vscode/launch.json") == 1 then
-    vim.cmd("edit ./.vscode/launch.json")
-  else
-    print("launch.json does not exist")
-  end
+	if vim.fn.filereadable("./.vscode/launch.json") == 1 then
+		vim.cmd("edit ./.vscode/launch.json")
+	else
+		print("launch.json does not exist")
+	end
 end
+
+function M.DapLoadPythonVenv() end
 
 return M
