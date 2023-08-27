@@ -46,12 +46,13 @@ require("nvim-tree").setup({
   },
   filters = {
     custom = {
-      "node_modules",
+      "^node_modules$",
+      "^.next$",
       ".DS_Store",
-      "env",
-      "venv",
-      ".git",
-      "obj",
+      "^venv$",
+      "^env$",
+      "^.git$",
+      "^obj$",
     },
   },
   git = {
