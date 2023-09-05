@@ -1,61 +1,53 @@
 local colors = require("tjmadonna.gruvbox")
+local settings = require("tjmadonna.shared-settings")
 
 vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = colors.dark0_hard })
 vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = colors.dark3 })
 
 local function title(path)
-  -- local cwd = vim.fn.getcwd(0)
-  local cwd = path
-  local dir = vim.fn.split(cwd, "/")
-  return vim.fn.toupper(dir[#dir])
+	-- local cwd = vim.fn.getcwd(0)
+	local cwd = path
+	local dir = vim.fn.split(cwd, "/")
+	return vim.fn.toupper(dir[#dir])
 end
 
-
 local function on_attach(bufnr)
-  local api = require("nvim-tree.api")
+	local api = require("nvim-tree.api")
 
-  local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  end
+	local function opts(desc)
+		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	end
 
-  -- default mappings
-  api.config.mappings.default_on_attach(bufnr)
+	-- default mappings
+	api.config.mappings.default_on_attach(bufnr)
 
-  -- custom mappings
-  vim.keymap.set("n", "<C-c>", api.tree.close, opts("Close"))
+	-- custom mappings
+	vim.keymap.set("n", "<C-c>", api.tree.close, opts("Close"))
 end
 
 require("nvim-tree").setup({
-  on_attach = on_attach,
-  sort_by = "case_sensitive",
-  view = {
-    signcolumn = "no",
-    width = "15%",
-  },
-  renderer = {
-    root_folder_label = title,
-    icons = {
-      show = {
-        file = true,
-        folder = false,
-        folder_arrow = true,
-        git = true,
-        modified = true,
-      },
-    },
-  },
-  filters = {
-    custom = {
-      "^node_modules$",
-      "^.next$",
-      ".DS_Store",
-      "^venv$",
-      "^env$",
-      "^.git$",
-      "^obj$",
-    },
-  },
-  git = {
-    ignore = false,
-  },
+	on_attach = on_attach,
+	sort_by = "case_sensitive",
+	view = {
+		signcolumn = "no",
+		width = "15%",
+	},
+	renderer = {
+		root_folder_label = title,
+		icons = {
+			show = {
+				file = true,
+				folder = false,
+				folder_arrow = true,
+				git = true,
+				modified = true,
+			},
+		},
+	},
+	filters = {
+		custom = settings.ignored_patterns,
+	},
+	git = {
+		ignore = false,
+	},
 })
