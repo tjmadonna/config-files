@@ -49,6 +49,9 @@ keymap.set("n", "<leader>fw", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace
 -- Toggle term
 keymap.set("n", "<leader>gg", "<Cmd>lua Lazygit_toggle()<CR>", { desc = "Open LazyGit", noremap = true, silent = true })
 
+-- Git
+keymap.set("n", "<leader>gb", "<Cmd>Gitsigns blame_line<CR>", { desc = "Git Blame Line", noremap = true, silent = true })
+
 -- NvimTree
 keymap.set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")
 
