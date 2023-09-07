@@ -1,5 +1,4 @@
 local telescope = require("telescope")
-local settings = require("tjmadonna.shared-settings")
 
 local actions = require("telescope.actions")
 
@@ -8,7 +7,16 @@ telescope.setup({
 		prompt_prefix = "  ",
 		selection_caret = "  ",
 		path_display = { "smart" },
-		file_ignore_patterns = settings.ignored_patterns,
+		file_ignore_patterns = {
+      "^env/",
+      "^venv/",
+      "^.pytest_cache/",
+      "^.next/",
+      "^node_modules/",
+      "^.git/",
+      "^obj/",
+      ".DS_Store",
+    },
 	},
 
 	mappings = {

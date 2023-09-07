@@ -1,5 +1,4 @@
 local colors = require("tjmadonna.gruvbox")
-local settings = require("tjmadonna.shared-settings")
 
 vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = colors.dark0_hard })
 vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = colors.dark3 })
@@ -45,7 +44,16 @@ require("nvim-tree").setup({
 		},
 	},
 	filters = {
-		custom = settings.ignored_patterns,
+		custom = {
+      "^env$",
+      "^venv$",
+      "^.pytest_cache$",
+      "^.next$",
+      "^node_modules$",
+      "^.git$",
+      "^obj$",
+      ".DS_Store",
+    },
 	},
 	git = {
 		ignore = false,
