@@ -97,6 +97,8 @@ dapjs.setup({
 
 dap_python.setup(os.getenv("HOME") .. "/.config/dap/debugpy/bin/python")
 
+-- Dap commands
+
 local dap_launch = require("tjmadonna.mason.dap.launch")
 dap_launch.DapLaunchLoad()
 
@@ -122,4 +124,22 @@ end, {})
 
 vim.api.nvim_create_user_command("DapBreakpointsExpand", function()
 	dapui.float_element("breakpoints", { enter = true })
+end, {})
+
+vim.api.nvim_create_user_command("DapTestClass", function()
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  if filetype == "python" then
+    dap_python.test_class()
+  else
+    print("DapTestMethod: Unsupported filetype " .. filetype)
+  end
+end, {})
+
+vim.api.nvim_create_user_command("DapTestMethod", function()
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  if filetype == "python" then
+    dap_python.test_method()
+  else
+    print("DapTestMethod: Unsupported filetype " .. filetype)
+  end
 end, {})
