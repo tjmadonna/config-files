@@ -89,6 +89,7 @@ require("lazy").setup({
       "rcarriga/nvim-dap-ui",
 	    "folke/neodev.nvim",
 	    "mxsdev/nvim-dap-vscode-js",
+      "mfussenegger/nvim-dap-python",
     },
   },
   {

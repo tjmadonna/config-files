@@ -4,6 +4,7 @@ local dap_mason = require("mason-nvim-dap")
 local dapui = require("dapui")
 local neodev = require("neodev")
 local dapjs = require("dap-vscode-js")
+local dap_python = require("dap-python")
 
 dapui.setup({
 	floating = {
@@ -87,10 +88,14 @@ end
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "󰜴", texthl = "", linehl = "", numhl = "" })
 
+-- JavaScript and Python debugging
+
 dapjs.setup({
 	adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
 	debugger_path = os.getenv("HOME") .. "/.config/dap/vscode-js-debug",
 })
+
+dap_python.setup(os.getenv("HOME") .. "/.config/dap/debugpy/bin/python")
 
 local dap_launch = require("tjmadonna.mason.dap.launch")
 dap_launch.DapLaunchLoad()
