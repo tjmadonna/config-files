@@ -93,6 +93,12 @@ require("lazy").setup({
     },
   },
   {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    }
+  },
+  {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
