@@ -37,6 +37,12 @@ keymap.set("v", "<leader>y", '"+y')
 -- don't use Q
 keymap.set("n", "Q", "<nop>")
 
+-- Window sizing
+keymap.set("n", "<C-w><C-k>", ":resize -3<CR>", { desc = "Resize Window Up", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-j>", ":resize +3<CR>", { desc = "Resize Window Down", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-h>", ":vertical resize +3<CR>", { desc = "Resize Window Left", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-l>", ":vertical resize -3<CR>", { desc = "Resize Window Right", noremap = true, silent = true })
+
 -- Telescope
 keymap.set("n", "<leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { desc = "Find Files" })
 keymap.set("n", "<leader>fg", "<Cmd>Telescope git_files<CR>", { desc = "Find Git Files" })
@@ -71,6 +77,11 @@ keymap.set("n", "<leader>6", "<Cmd>BufferLineGoToBuffer 6<CR>")
 keymap.set("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>")
 keymap.set("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>")
 keymap.set("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>")
+
+-- Rest
+keymap.set("n", "<leader>rr", "<Plug>RestNvim<CR>", { desc = "Run RestNvim request under cursor" })
+keymap.set("n", "<leader>rp", "<Plug>RestNvimPreview<CR>", { desc = "Preview RestNvim request cURL command" })
+keymap.set("n", "<leader>rl", "<Plug>RestNvimLast<CR>", { desc = "Rerun the last RestNvim request" })
 
 -- Dap
 keymap.set("n", "<leader>dd", "<Cmd>lua require('dapui').toggle()<CR>")
