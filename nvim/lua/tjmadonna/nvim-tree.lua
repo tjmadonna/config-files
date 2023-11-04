@@ -53,6 +53,7 @@ require("nvim-tree").setup({
       "^.git$",
       "^obj$",
       ".DS_Store",
+      "__pycache__",
     },
 	},
 	git = {
