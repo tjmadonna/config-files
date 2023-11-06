@@ -18,6 +18,7 @@ configs.setup({
     "lua",
     "markdown",
     "python",
+    "svelte",
     "typescript",
     "yaml",
   },

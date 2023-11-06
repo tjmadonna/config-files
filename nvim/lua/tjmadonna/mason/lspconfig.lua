@@ -11,6 +11,7 @@ require("mason-lspconfig").setup({
     "jsonls",
     "lua_ls",
     "pyright",
+    "svelte",
     "tsserver",
   },
   automatic_installation = true,
