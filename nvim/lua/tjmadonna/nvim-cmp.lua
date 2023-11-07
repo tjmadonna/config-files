@@ -1,13 +1,13 @@
 local cmp = require("cmp")
 
-local luasnip = require("luasnip")
+local ls = require("luasnip")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
+			ls.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 
@@ -19,6 +19,15 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.confirm { select = true }
+        elseif ls.expand_or_jumpable() then
+            ls.expand_or_jump()
+        else
+            fallback()
+        end
+    end, { "i", "s", }),
 		["<C-e>"] = cmp.mapping({
 			i = function()
 				if cmp.visible() then
