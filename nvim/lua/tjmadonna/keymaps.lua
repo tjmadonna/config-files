@@ -52,9 +52,6 @@ keymap.set("n", "<leader>fk", "<Cmd>Telescope keymaps<CR>", { desc = "Find Keyma
 keymap.set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "Find Buffers" })
 keymap.set("n", "<leader>fw", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace Word Under Cursor" })
 
--- Toggle term
-keymap.set("n", "<leader>gg", "<Cmd>lua Lazygit_toggle()<CR>", { desc = "Open LazyGit", noremap = true, silent = true })
-
 -- Git
 keymap.set("n", "<leader>gb", "<Cmd>Gitsigns blame_line<CR>", { desc = "Git Blame Line", noremap = true, silent = true })
 

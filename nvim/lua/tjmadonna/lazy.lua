@@ -38,13 +38,6 @@ require("lazy").setup({
     },
   },
   {
-    "shortcuts/no-neck-pain.nvim",
-    version = "*",
-  },
-  {
-    "akinsho/toggleterm.nvim"
-  },
-  {
     "akinsho/bufferline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" }
   },
