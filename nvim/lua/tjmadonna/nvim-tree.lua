@@ -27,6 +27,11 @@ end
 require("nvim-tree").setup({
 	on_attach = on_attach,
 	sort_by = "case_sensitive",
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
+	},
 	view = {
 		signcolumn = "no",
 		width = "15%",
@@ -45,16 +50,16 @@ require("nvim-tree").setup({
 	},
 	filters = {
 		custom = {
-      "^env$",
-      "^venv$",
-      "^.pytest_cache$",
-      "^.next$",
-      "^node_modules$",
-      "^.git$",
-      "^obj$",
-      ".DS_Store",
-      "__pycache__",
-    },
+			"^env$",
+			"^venv$",
+			"^.pytest_cache$",
+			"^.next$",
+			"^node_modules$",
+			"^.git$",
+			"^obj$",
+			".DS_Store",
+			"__pycache__",
+		},
 	},
 	git = {
 		ignore = false,
