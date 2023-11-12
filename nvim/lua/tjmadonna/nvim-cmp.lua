@@ -19,11 +19,16 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-            cmp.confirm { select = true }
-        elseif ls.expand_or_jumpable() then
-            ls.expand_or_jump()
+    ["<C-l>"] = cmp.mapping(function(fallback)
+        if ls.in_snippet() and ls.jumpable(1) then
+            ls.jump(1)
+        else
+            fallback()
+        end
+    end, { "i", "s", }),
+    ["<C-h>"] = cmp.mapping(function(fallback)
+        if ls.in_snippet() and ls.jumpable(-1) then
+            ls.jump(-1)
         else
             fallback()
         end
