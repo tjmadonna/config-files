@@ -54,11 +54,16 @@ keymap.set("n", "<leader>fw", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace
 
 -- Git
 keymap.set("n", "<leader>gb", "<Cmd>Gitsigns blame_line<CR>", { desc = "Git Blame Line", noremap = true, silent = true })
-keymap.set("n", "<leader>gd", "<Cmd>Gitsigns diff_this<CR>", { desc = "Git Diff", noremap = true, silent = true })
+keymap.set("n", "<leader>gd", "<Cmd>Gitsigns diffthis<CR>", { desc = "Git Diff", noremap = true, silent = true })
 keymap.set("v", "<leader>gs", function ()
   require("gitsigns").stage_hunk({vim.fn.line("."), vim.fn.line("v")})
 end, { desc = "Git Stage Hunk", noremap = true, silent = true })
-keymap.set("v", "<leader>gS", function ()
+
+keymap.set("v", "<leader>gu", function ()
+  require("gitsigns").undo_stage_hunk({vim.fn.line("."), vim.fn.line("v")})
+end, { desc = "Git Unstage Hunk", noremap = true, silent = true })
+
+keymap.set("n", "<leader>gS", function ()
   require("gitsigns").stage_buffer()
 end, { desc = "Git Stage Buffer", noremap = true, silent = true })
 
