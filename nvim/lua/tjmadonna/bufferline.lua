@@ -1,11 +1,5 @@
 local colors = require("tjmadonna.gruvbox")
 
-local function title()
-  local cwd = vim.fn.getcwd(0)
-  local dir = vim.fn.split(cwd, "/")
-  return vim.fn.toupper(dir[#dir])
-end
-
 require("bufferline").setup({
   highlights = {
     fill = {
@@ -64,6 +58,15 @@ require("bufferline").setup({
       bg = colors.dark1,
     },
     indicator_selected = {
+      bg = colors.dark0_hard,
+    },
+    modified = {
+      bg = colors.dark1,
+    },
+    modified_visible = {
+      bg = colors.dark1,
+    },
+    modified_selected = {
       bg = colors.dark0_hard,
     },
     -- tab = {

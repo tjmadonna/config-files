@@ -1,10 +1,11 @@
 local colors = require("tjmadonna.gruvbox")
 
 vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = colors.dark0_hard })
-vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = colors.dark3 })
+vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { bg = colors.dark0_hard })
+vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = colors.dark1 })
+vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = colors.text })
 
 local function title(path)
-	-- local cwd = vim.fn.getcwd(0)
 	local cwd = path
 	local dir = vim.fn.split(cwd, "/")
 	return vim.fn.toupper(dir[#dir])
