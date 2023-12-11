@@ -20,6 +20,6 @@ api.nvim_create_autocmd("FileType", {
 
 -- update file if changed outside of neovim
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | NvimTreeRefresh | endif",
+  command = "if mode() != 'c' | checktime | endif",
   pattern = { "*" },
 })
