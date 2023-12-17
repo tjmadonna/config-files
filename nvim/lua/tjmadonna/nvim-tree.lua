@@ -51,11 +51,8 @@ require("nvim-tree").setup({
 	},
 	filters = {
 		custom = {
-			"^env$",
-			"^venv$",
 			"^.pytest_cache$",
 			"^.next$",
-			"^node_modules$",
 			"^.git$",
 			"^obj$",
 			".DS_Store",
