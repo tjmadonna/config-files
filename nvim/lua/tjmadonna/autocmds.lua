@@ -4,12 +4,6 @@ local api = vim.api
 api.nvim_create_autocmd("FileType", {
   pattern = {
     "html",
-    "css",
-    "json",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
     "lua",
   },
   callback = function()
