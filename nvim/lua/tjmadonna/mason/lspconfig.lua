@@ -98,9 +98,10 @@ require("mason-lspconfig").setup_handlers({
   end,
 
   ["tsserver"] = function ()
-    lspconfig.tsserver.setup({
+    lspconfig["tsserver"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
       commands = {
         OrganizeImports = {
           ts_organize_imports,
