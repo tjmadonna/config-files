@@ -94,6 +94,20 @@ keymap.set("n", "<leader>rr", "<Plug>RestNvim<CR>", { desc = "Run RestNvim reque
 keymap.set("n", "<leader>rp", "<Plug>RestNvimPreview<CR>", { desc = "Preview RestNvim request cURL command" })
 keymap.set("n", "<leader>rl", "<Plug>RestNvimLast<CR>", { desc = "Rerun the last RestNvim request" })
 
+-- Testing
+keymap.set("n", "<leader>tt", function ()
+  require('neotest').run.run()
+end, { desc = "Run the nearest test" })
+keymap.set("n", "<leader>tf", function ()
+  require("neotest").run.run(vim.fn.expand("%"))
+end, { desc = "Run the tests in the current file" })
+keymap.set("n", "<leader>td", function ()
+  require("neotest").run.run({strategy = "dap"})
+end, { desc = "Debug the nearest test" })
+keymap.set("n", "<leader>ts", function ()
+  require("neotest").summary.toggle()
+end, { desc = "Toggle the test summary buffer" })
+
 -- Dap
 keymap.set("n", "<leader>dd", "<Cmd>lua require('dapui').toggle()<CR>")
 keymap.set("n", "<leader>dh", "<Cmd>lua require('dap.ui.widgets').hover()<CR>")
