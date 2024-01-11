@@ -1,9 +1,6 @@
 # Add tmux things to path
 export PATH=$PATH:$HOME/.config/tmux/bin
 
-# LunarVim
-export PATH=$PATH:$HOME/.local/bin
-
 # Add Visual Studio Code (code)
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 
