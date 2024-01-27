@@ -13,20 +13,5 @@ ln -s $PWD/tmux/bin/tmux-sessionizer ~/.config/tmux/bin/tmux-sessionizer
 # neovim
 ln -s $PWD/nvim ~/.config
 
-# dap
-mkdir -p ~/.config/dap
-ln -s $PWD/dap/templates ~/.config/dap
-
 # idea
 ln -s $PWD/idea/.ideavimrc ~/.ideavimrc
-
-# check if debugpy environment is already created
-if [ ! -d ~/.config/dap/debugpy ]; then
-    python3 -m venv ~/.config/dap/debugpy
-    source ~/.config/dap/debugpy/bin/activate && pip install debugpy
-fi
-
-# check if vscode-js-debug is already cloned
-if [ ! -d ~/.config/dap/vscode-js-debug ]; then
-    git clone https://github.com/microsoft/vscode-js-debug.git ~/.config/dap/vscode-js-debug
-fi

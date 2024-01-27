@@ -1,6 +1,3 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local opt = vim.opt
 
 -- line numbers
@@ -17,7 +14,7 @@ opt.autoindent = true
 opt.listchars = "tab:| ,lead:·,trail:·,eol:$"
 
 -- show ruler line at end of line
-opt.colorcolumn = "80,120"
+opt.colorcolumn = "80"
 
 -- line wrapping
 opt.wrap = false
@@ -25,7 +22,7 @@ opt.wrap = false
 -- search settings
 opt.ignorecase = true
 opt.smartcase = true
-opt.hlsearch = false
+opt.hlsearch = true
 opt.incsearch = true
 
 -- cursor line

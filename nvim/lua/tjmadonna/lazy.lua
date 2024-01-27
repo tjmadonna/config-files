@@ -11,105 +11,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = false,
-    priority = 1000,
+require("lazy").setup({ { import = "tjmadonna.plugins" }, { import = "tjmadonna.plugins.lsp" } }, {
+  install = {
+    colorscheme = { "gruvbox" },
   },
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.4",
-    dependencies = { "nvim-lua/plenary.nvim" }
+  checker = {
+    enabled = true,
+    notify = false,
   },
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "lewis6991/gitsigns.nvim",
-    }
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-  {
-    "akinsho/bufferline.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }
-  },
-  {
-    "nvim-treesitter/nvim-treesitter", run = ":TSUpdate"
-  },
-  {
-    "hrsh7th/nvim-cmp",               -- autocompletion
-    dependencies = {
-      "hrsh7th/cmp-buffer",           -- buffer completion extension
-      "hrsh7th/cmp-path",             -- path completion extension
-      "hrsh7th/cmp-cmdline",          -- command line completion extension
-      "saadparwaiz1/cmp_luasnip",     -- snippet completion extension
-      "hrsh7th/cmp-nvim-lsp",         -- lsp completions extension
-      "L3MON4D3/LuaSnip",             -- snippet engine
-      "rafamadriz/friendly-snippets", -- a bunch of useful snippets
-    }
-  },
-  {
-    "github/copilot.vim",
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-    }
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-    }
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-	    "folke/neodev.nvim",
-	    "mxsdev/nvim-dap-vscode-js",
-      "mfussenegger/nvim-dap-python",
-    },
-  },
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    }
-  },
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-  {
-    "RRethy/vim-illuminate",
-    config = function()
-      require("illuminate").configure()
-    end
-  },
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-neotest/neotest-python",
-    },
+  change_detection = {
+    notify = false,
   },
 })

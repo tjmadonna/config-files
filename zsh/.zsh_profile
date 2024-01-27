@@ -7,6 +7,9 @@ export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/
 # Add rust tools to path
 export PATH=$PATH:$HOME/.cargo/bin
 
+# Add mason tools to path
+export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
+
 export PROJ_FILE=$HOME/.config/tmux/projects
 
 export DAP_TEMPLATES=$HOME/.config/dap/templates

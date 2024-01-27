@@ -1,1 +1,2 @@
-require("tjmadonna")
+require("tjmadonna.core")
+require("tjmadonna.lazy")
