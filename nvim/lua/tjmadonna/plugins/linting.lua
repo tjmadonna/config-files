@@ -22,7 +22,7 @@ return {
     local enabled_linters = {
       ["eslint_d"] = conditional_lint(".eslint", "eslint_d"),
       ["flake8"] = conditional_lint(".flake8", "flake8"),
-      ["golangci-lint"] = true,
+      ["golangci-lint"] = { "golangcilint" },
     }
 
     lint.linters_by_ft = {
