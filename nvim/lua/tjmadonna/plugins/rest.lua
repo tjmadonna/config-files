@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  event = "VeryLazy",
+  ft = { "http" },
   config = function()
     local rest = require("rest-nvim")
     rest.setup()
