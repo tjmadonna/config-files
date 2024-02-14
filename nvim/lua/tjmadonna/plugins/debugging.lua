@@ -148,11 +148,13 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     "rcarriga/nvim-dap-ui",
+    "mxsdev/nvim-dap-vscode-js",
   },
   event = "VeryLazy",
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
+    local dapjs = require("dap-vscode-js")
 
     -- python
     dap.adapters.python = {
@@ -172,6 +174,12 @@ return {
         args = { "dap", "-l", "127.0.0.1:${port}" },
       },
     }
+
+    -- js
+    dapjs.setup({
+      adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+      debugger_path = vim.fn.stdpath("data") .. "/mason/packages/vscode-js-debug",
+    })
 
     -- chrome
     dap.adapters["pwa-chrome"] = {

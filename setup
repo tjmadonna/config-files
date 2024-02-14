@@ -33,4 +33,5 @@ if [ ! -d ~/.local/share/nvim/mason/packages/vscode-js-debug ]; then
     # build to dist directory
     npm install --legacy-peer-deps
     npx gulp vsDebugServerBundle
+    mv dist out
 fi
