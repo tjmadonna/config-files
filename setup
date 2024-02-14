@@ -15,3 +15,22 @@ ln -s $PWD/nvim ~/.config
 
 # idea
 ln -s $PWD/idea/.ideavimrc ~/.ideavimrc
+
+# kitty
+ln -s $PWD/kitty ~/.config
+
+# check if vscode-js-debug is already cloned
+if [ ! -d ~/.local/share/nvim/mason/packages ]; then
+  mkdir -p ~/.local/share/nvim/mason/packages
+fi
+
+if [ ! -d ~/.local/share/nvim/mason/packages/vscode-js-debug ]; then
+    git clone https://github.com/microsoft/vscode-js-debug.git ~/.local/share/nvim/mason/packages/vscode-js-debug
+    cd ~/.local/share/nvim/mason/packages/vscode-js-debug
+    latestTag=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+    git checkout $latestTag
+
+    # build to dist directory
+    npm install --legacy-peer-deps
+    npx gulp vsDebugServerBundle
+fi
