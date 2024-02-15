@@ -241,5 +241,15 @@ return {
         },
       },
     })
+
+    -- set keymaps
+    local keymap = vim.keymap -- for conciseness
+
+    keymap.set("n", "<leader>du", function()
+      dapui.toggle()
+    end, { desc = "Toggle debugging UI" })
+    keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "Start or continue debugging" })
+    keymap.set("n", "<leader>dt", "<cmd>DapTerminate<cr>", { desc = "Terminate debugging" })
+    keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Toggle debug breakpoint" })
   end,
 }
