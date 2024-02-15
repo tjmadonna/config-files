@@ -27,8 +27,7 @@ keymap.set("n", "N", "Nzzzv", { desc = "Keep search term in middle when searchin
 -- copy, paste over something but maintain copied text
 keymap.set("x", "<leader>p", '"_dP', { desc = "Copy and paste over something but maintain copied text" })
 
-keymap.set("n", "<leader>d", '"_d', { desc = "Delete To Void Register" })
-keymap.set("v", "<leader>d", '"_d', { desc = "Delete To Void Register" })
+keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete To Void Register" })
 
 -- copy to system clipboard
 keymap.set("n", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
