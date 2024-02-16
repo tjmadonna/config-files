@@ -5,6 +5,7 @@ local colors = {
   dark3 = "#665c54",
   dark4 = "#7c6f64",
   red = "#fb4934",
+  neutral_blue = "#458588",
   neutral_red = "#cc241d",
   faded_red = "#9d0006",
   green = "#b8bb26",
@@ -51,6 +52,9 @@ return {
     vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { bg = colors.dark0_hard })
     vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = colors.dark1 })
     vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = colors.text })
+
+    vim.cmd([[ highlight NvimTreeFolderArrowClosed guifg=colors.neutral_blue ]])
+    vim.cmd([[ highlight NvimTreeFolderArrowOpen guifg=colors.neutral_blue ]])
 
     -- copilot
     vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#888888", ctermfg = 8 })
