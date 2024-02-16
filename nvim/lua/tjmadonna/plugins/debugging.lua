@@ -146,11 +146,11 @@ end, {})
 
 return {
   "mfussenegger/nvim-dap",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "rcarriga/nvim-dap-ui",
-    "mxsdev/nvim-dap-vscode-js",
+    { "rcarriga/nvim-dap-ui", lazy = true },
+    { "mxsdev/nvim-dap-vscode-js", ft = "javascript,typescript,typescriptreact,javascriptreact" },
   },
-  event = "VeryLazy",
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")

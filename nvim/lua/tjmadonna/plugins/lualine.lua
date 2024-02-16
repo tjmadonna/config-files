@@ -10,6 +10,7 @@ return {
     lualine.setup({
       options = {
         theme = "gruvbox_dark",
+        section_separators = {"", ""},
       },
       sections = {
         lualine_x = {
