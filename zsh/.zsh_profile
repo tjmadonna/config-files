@@ -1,5 +1,5 @@
-# Add tmux things to path
-export PATH=$PATH:$HOME/.config/tmux/bin
+# Add Homebrew to path
+export PATH=$PATH:/opt/homebrew/bin
 
 # Add Visual Studio Code (code)
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
@@ -7,12 +7,15 @@ export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/
 # Add rust tools to path
 export PATH=$PATH:$HOME/.cargo/bin
 
+# Go to path
+export PATH=$PATH:$HOME/go/bin
+
 # Add mason tools to path
 export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
 
+# Setup tmux-sessionizer
+export PATH=$PATH:$HOME/.config/tmux/bin
 export PROJ_FILE=$HOME/.config/tmux/projects
-
-export DAP_TEMPLATES=$HOME/.config/dap/templates
 
 function ff {
     tmux-sessionizer
@@ -60,40 +63,11 @@ function rmff {
     fi
 }
 
-function createDebugConfig {
-    # check if there's an input
-    if [ -z "$1" ]; then
-        echo "No language specified"
-        return
-    fi
-    # check if the template file exists
-    if ! test -f $DAP_TEMPLATES/$1.json; then
-        echo "Template file for $1 does not exist"
-        return
-    fi
-
-    # check if .vscode directory exists
-    if ! test -d .vscode; then
-        echo "Creating .vscode directory"
-        mkdir .vscode
-    fi
-    # check if launch.json exists in .vscode directory
-    if ! test -f .vscode/launch.json; then
-        echo "Creating launch.json"
-        cp $DAP_TEMPLATES/$1.json .vscode/launch.json
-    else
-        echo "launch.json already exists"
-        return
-    fi
-}
-
-# Go
-export PATH=$PATH:$HOME/go/bin
-alias go-coverage="go test -coverprofile=coverage.out ./... && go tool cover -html=coverage.out"
-
 # Set up Node Version Manager (NVM)
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+function load_nvm {
+    export NVM_DIR=~/.nvm
+    source $(brew --prefix nvm)/nvm.sh
+}
 
 # macro to kill the docker desktop app and the VM (excluding vmnetd -> it's a service)
 function kill-docker {
