@@ -72,14 +72,14 @@ bindkey '^e' edit-command-line
 # Add Homebrew to path
 export PATH=$PATH:/opt/homebrew/bin
 
+# Add node20 to path
+export PATH=$PATH:/opt/homebrew/opt/node@20/bin
+
 # Add Visual Studio Code (code)
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 
 # Add rust tools to path
 export PATH=$PATH:$HOME/.cargo/bin
-
-# Go to path
-export PATH=$PATH:$HOME/go/bin
 
 # Add mason tools to path
 export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
@@ -132,12 +132,6 @@ function rmff {
     else
         echo "Not a directory: $1"
     fi
-}
-
-# Set up Node Version Manager (NVM)
-function load_nvm {
-    export NVM_DIR=~/.nvm
-    source $(brew --prefix nvm)/nvm.sh
 }
 
 # macro to kill the docker desktop app and the VM (excluding vmnetd -> it's a service)
