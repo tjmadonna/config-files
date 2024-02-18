@@ -1,32 +1,149 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Enable colors and change prompt:
+autoload -U colors && colors
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+git_prompt() {
+    local branch="$(git symbolic-ref HEAD 2> /dev/null | cut -d'/' -f3-)"
+    local branch_truncated="${branch:0:30}"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+    if (( ${#branch} > ${#branch_truncated} )); then
+        branch="${branch_truncated}..."
+    fi
 
-# vim keybindings
-bindkey kj vi-cmd-mode
-bindkey '^k' autosuggest-accept
+    [ -n "${branch}" ] && echo $'\uE725' ${branch}" "
+}
+
+export VIRTUAL_ENV_DISABLE_PROMPT=1 # disable (venv) prompt when activated
+python_venv_prompt() {
+    [ -n "${VIRTUAL_ENV}" ] && echo $'\uE73c' ${VIRTUAL_ENV##*/}" "
+}
+
+# This is specific to zsh but you could call $(git_prompt) in your .bashrc PS1 too.
+setopt PROMPT_SUBST
+PS1=$'%B%{$fg[blue]%}%1~ %{$fg[magenta]%}$(git_prompt)%{$fg[yellow]%}$(python_venv_prompt)%{$reset_color%}> %b'
+
+# History in cache directory:
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/zsh/.zsh_history
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# vi mode
 bindkey -v
+export KEYTIMEOUT=1
 
-source $ZSH/oh-my-zsh.sh
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.zsh_profile
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# Add Homebrew to path
+export PATH=$PATH:/opt/homebrew/bin
+
+# Add Visual Studio Code (code)
+export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
+# Add rust tools to path
+export PATH=$PATH:$HOME/.cargo/bin
+
+# Go to path
+export PATH=$PATH:$HOME/go/bin
+
+# Add mason tools to path
+export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
+
+# Setup tmux-sessionizer
+export PATH=$PATH:$HOME/.config/tmux/bin
+export PROJ_FILE=$HOME/.config/tmux/projects
+
+function ff {
+    tmux-sessionizer
+}
+
+function addff {
+    # check if input is a directory
+    if [ -d "$1" ]; then
+        # check if the project file exists
+        if ! test -f $PROJ_FILE; then
+            echo "Creating $PROJ_FILE"
+            touch $PROJ_FILE
+        fi
+
+        # check if the project is already in the file
+        if grep -q "^$1$" $PROJ_FILE; then
+            echo "Project already in $PROJ_FILE"
+            return
+        fi
+        echo "Adding $1 to $PROJ_FILE"
+        echo "$1" >> "$PROJ_FILE"
+    else
+        echo "Not a directory: $1"
+    fi
+}
+
+function rmff {
+    # check if input is a directory
+    if [ -d "$1" ]; then
+        if test -f $PROJ_FILE; then
+            # check if the project is already in the file
+            if grep -q "^$1$" $PROJ_FILE; then
+                # replace all / in input with \/ to escape them
+                echo "Removing $1 from $PROJ_FILE"
+                sed -i "" -e "/^${1//\//\\/}$/d" $PROJ_FILE
+            else
+                echo "Project not in $PROJ_FILE"
+                return
+            fi
+        else
+            echo "$PROJ_FILE does not exist"
+        fi
+    else
+        echo "Not a directory: $1"
+    fi
+}
+
+# Set up Node Version Manager (NVM)
+function load_nvm {
+    export NVM_DIR=~/.nvm
+    source $(brew --prefix nvm)/nvm.sh
+}
+
+# macro to kill the docker desktop app and the VM (excluding vmnetd -> it's a service)
+function kill-docker {
+    ps ax|grep -i docker|egrep -iv 'grep|com.docker.vmnetd'|awk '{print $1}'|xargs kill
+}
+
+# Load zsh-syntax-highlighting; should be last.
+source $HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
