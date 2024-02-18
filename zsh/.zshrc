@@ -1,7 +1,7 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
 
-git_prompt() {
+function git_prompt {
     local branch="$(git symbolic-ref HEAD 2> /dev/null | cut -d'/' -f3-)"
     local branch_truncated="${branch:0:30}"
 
@@ -13,7 +13,7 @@ git_prompt() {
 }
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # disable (venv) prompt when activated
-python_venv_prompt() {
+function python_venv_prompt {
     [ -n "${VIRTUAL_ENV}" ] && echo $'\uE73c' ${VIRTUAL_ENV##*/}" "
 }
 
