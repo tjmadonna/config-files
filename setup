@@ -6,7 +6,7 @@ mkdir -pv ~/.cache/zsh
 mkdir -pv ~/.config/zsh
 ln -s $PWD/zsh/.zshrc ~/.config/zsh/.zshrc
 if [ ! -d ~/.local/share/zsh/plugins/zsh-syntax-highlighting ]; then
-    git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ~/.local/share/zsh/zsh-syntax-highlighting
+    git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ~/.local/share/zsh/plugins/zsh-syntax-highlighting
 fi
 
 # tmux
