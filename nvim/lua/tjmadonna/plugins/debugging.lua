@@ -4,10 +4,13 @@ local template_configs = {
     config = {
       type = "pwa-chrome",
       request = "launch",
-      name = "Launch Chrome against localhost",
+      name = "Launch and debug in Chrome",
       url = "http://localhost:3000",
-      webRoot = "${workspaceFolder}/src",
-      cwd = "${workspaceFolder}/src",
+      webRoot = "${workspaceFolder}",
+      cwd = "${workspaceFolder}",
+      skipFiles = { "<node_internals>/**/*.js" },
+      sourceMaps = true,
+      userDataDir = true,
     },
   },
   {
