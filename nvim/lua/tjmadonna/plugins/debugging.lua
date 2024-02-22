@@ -149,7 +149,7 @@ end, {})
 
 return {
   "mfussenegger/nvim-dap",
-  event = { "BufReadPre", "BufNewFile" },
+  ft = "javascript,typescript,typescriptreact,javascriptreact,go,python",
   dependencies = {
     { "rcarriga/nvim-dap-ui", lazy = true },
     { "mxsdev/nvim-dap-vscode-js", ft = "javascript,typescript,typescriptreact,javascriptreact" },
@@ -254,5 +254,12 @@ return {
     keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "Start or continue debugging" })
     keymap.set("n", "<leader>dt", "<cmd>DapTerminate<cr>", { desc = "Terminate debugging" })
     keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Toggle debug breakpoint" })
+
+    vim.keymap.set("n", "<F5>", dap.continue, { desc = "Start/Continue debug session" })
+    vim.keymap.set("n", "<F6>", dap.continue, { desc = "Terminate debug session" })
+
+    vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Step into next debug statement" })
+    vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Step over next debug statement" })
+    vim.keymap.set("n", "<F3>", dap.step_out, { desc = "Step out of next debug statement" })
   end,
 }
