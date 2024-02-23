@@ -184,17 +184,6 @@ return {
       debugger_path = vim.fn.stdpath("data") .. "/mason/packages/vscode-js-debug",
     })
 
-    -- chrome
-    dap.adapters["pwa-chrome"] = {
-      type = "server",
-      host = "localhost",
-      port = "${port}",
-      executable = {
-        command = "js-debug-adapter",
-        args = { "${port}" },
-      },
-    }
-
     -- dap ui setup
     dapui.setup({
       floating = {
