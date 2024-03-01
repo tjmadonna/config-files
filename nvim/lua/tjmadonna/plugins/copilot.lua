@@ -5,5 +5,5 @@ vim.g.copilot_filetypes = {
 
 return {
   "github/copilot.vim",
-  event = "InsertEnter",
+  event = "VeryLazy",
 }
