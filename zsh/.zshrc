@@ -139,5 +139,6 @@ function kill-docker {
     ps ax|grep -i docker|egrep -iv 'grep|com.docker.vmnetd'|awk '{print $1}'|xargs kill
 }
 
-# Load zsh-syntax-highlighting; should be last.
+# Load zsh-syntax-highlighting and zsh-autosuggestions; should be last.
 source $HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source $HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
