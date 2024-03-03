@@ -77,6 +77,12 @@ return {
             git = true,
             modified = true,
           },
+          glyphs = {
+            folder = {
+              arrow_closed = "",
+              arrow_open = "",
+            },
+          },
         },
       },
       filters = {
