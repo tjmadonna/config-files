@@ -69,6 +69,9 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Use k to accept autosuggestions
+bindkey '^k' autosuggest-accept
+
 # Add Homebrew to path
 export PATH=$PATH:/opt/homebrew/bin
 
