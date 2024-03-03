@@ -1,25 +1,10 @@
-local colors = {
-  dark0_hard = "#1d2021",
-  dark1 = "#3c3836",
-  dark2 = "#504945",
-  dark3 = "#665c54",
-  dark4 = "#7c6f64",
-  red = "#fb4934",
-  neutral_red = "#cc241d",
-  faded_red = "#9d0006",
-  green = "#b8bb26",
-  aqua = "#8ec07c",
-  yellow = "#d79921",
-  white = "#ffffff",
-  text = "#ebdbb2",
-}
-
 return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   version = "*",
   config = function()
     local bufferline = require("bufferline")
+    local colors = require("gruvbox").palette
 
     bufferline.setup({
       highlights = {
@@ -67,7 +52,7 @@ return {
         },
         duplicate_selected = {
           bg = colors.dark0_hard,
-          fg = colors.text,
+          fg = colors.light1,
         },
         duplicate_visible = {
           bg = colors.dark1,
