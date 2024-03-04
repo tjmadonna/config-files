@@ -7,6 +7,11 @@ local function ts_organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
+local function py_organize_imports()
+  local isort_path = vim.fn.stdpath("data") .. "/mason/packages/isort/venv/bin/isort"
+  vim.cmd("silent !" .. isort_path .. " " .. vim.fn.expand("%"))
+end
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -24,7 +29,7 @@ return {
     local keymap = vim.keymap -- for conciseness
 
     local opts = { noremap = true, silent = true }
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
       opts.buffer = bufnr
 
       -- set keybinds
@@ -63,6 +68,11 @@ return {
 
       opts.desc = "Show documentation for what is under cursor"
       keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+
+      if client.name == "pyright" then
+        -- add custom command to organize imports for python
+        vim.api.nvim_create_user_command("OrganizeImports", py_organize_imports, { desc = "Organize Imports" })
+      end
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
