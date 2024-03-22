@@ -9,7 +9,7 @@ end
 
 local function py_organize_imports()
   local isort_path = vim.fn.stdpath("data") .. "/mason/packages/isort/venv/bin/isort"
-  vim.cmd("silent !" .. isort_path .. " " .. vim.fn.expand("%"))
+  vim.cmd("silent !" .. isort_path .. " " .. vim.fn.expand("%") .. " --profile black")
 end
 
 return {
