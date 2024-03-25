@@ -152,6 +152,7 @@ return {
   ft = "javascript,typescript,typescriptreact,javascriptreact,go,python",
   dependencies = {
     { "rcarriga/nvim-dap-ui", lazy = true },
+    { "nvim-neotest/nvim-nio", lazy = true },
     { "mxsdev/nvim-dap-vscode-js", ft = "javascript,typescript,typescriptreact,javascriptreact" },
   },
   config = function()
