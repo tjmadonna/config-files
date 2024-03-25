@@ -1,7 +1,7 @@
 return {
   "rest-nvim/rest.nvim",
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    { "nvim-neotest/nvim-nio", lazy = true },
   },
   ft = { "http" },
   config = function()
