@@ -36,6 +36,7 @@ return {
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>", { desc = "Find current marks" })
     keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find an open buffer" })
+    keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Find diagnostics in open buffers" })
 
     vim.keymap.set("n", "<leader>fg", function()
       builtin.grep_string({ search = vim.fn.input("Grep > ") })
