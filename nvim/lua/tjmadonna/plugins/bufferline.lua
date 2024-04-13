@@ -90,9 +90,6 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader>bp", "<Cmd>BufferLineCyclePrev<CR>")
-    keymap.set("n", "<leader>bn", "<Cmd>BufferLineCycleNext<CR>")
-    keymap.set("n", "<leader>bd", "<Cmd>bd<CR>")
     keymap.set("n", "<leader>be", "<Cmd>%bd|e#<CR>")
     keymap.set("n", "<leader>ba", "<Cmd>bufdo bd<CR>")
     keymap.set("n", "<leader>b.", "<Cmd>BufferLineMoveNext<CR>")
