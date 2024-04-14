@@ -45,6 +45,10 @@ return {
         end),
         ["<Tab>"] = cmp.mapping(function(fallback)
           local suggestion = require("copilot.suggestion")
+          if cmp.visible() then
+            cmp.abort() -- close cmp menu
+          end
+
           if suggestion.is_visible() then
             suggestion.accept() -- accept copilot suggestion
           else
