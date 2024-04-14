@@ -32,6 +32,7 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
+opt.laststatus=3
 
 -- scrolling
 opt.scrolloff = 8
