@@ -24,6 +24,15 @@ keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump half a page up while keeping 
 keymap.set("n", "n", "nzzzv", { desc = "Keep search term in middle when searching" })
 keymap.set("n", "N", "Nzzzv", { desc = "Keep search term in middle when searching" })
 
+-- search and replace word under cursor
+keymap.set("n", "<leader>sr", ":%s/<C-r><C-w>//g<left><left>", { desc = "Search and replace word under cursor" })
+keymap.set(
+  "v",
+  "<leader>sr",
+  "<ESC>:%s/\\%V<C-r><C-w>//g<left><left>",
+  { desc = "Search and replace word under cursor" }
+)
+
 -- copy, paste over something but maintain copied text
 keymap.set("x", "<leader>p", '"_dP', { desc = "Copy and paste over something but maintain copied text" })
 
