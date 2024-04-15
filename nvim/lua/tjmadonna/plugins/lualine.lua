@@ -17,7 +17,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "custom_gruvbox",
+        theme = custom_gruvbox,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
       },
