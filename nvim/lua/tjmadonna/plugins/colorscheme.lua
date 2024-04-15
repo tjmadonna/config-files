@@ -9,6 +9,9 @@ return {
     gruvbox.setup({
       contrast = "hard",
       overrides = {
+        NormalFloat = { bg = colors.dark0_hard, fg = colors.fg1 },
+        WinSeparator = { fg = colors.light1 },
+
         DiffDelete = { bg = colors.faded_red, fg = colors.faded_red },
         DiffAdd = { bg = colors.faded_green, fg = colors.faded_green },
         DiffChange = { bg = colors.faded_aqua, fg = colors.faded_aqua },
