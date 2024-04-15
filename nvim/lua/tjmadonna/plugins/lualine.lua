@@ -27,6 +27,7 @@ return {
             "buffers",
             icons_enabled = false,
             mode = 2,
+            max_length = vim.o.columns,
             use_mode_colors = false,
             hide_filename_extension = false,
             show_filename_only = true,
