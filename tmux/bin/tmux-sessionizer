@@ -9,13 +9,17 @@ fi
 session_name=$(basename "$session" | tr . _)
 tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $session_name -n $session_name -c $session
+# If tmux is not running, just create a new session
+# -A - attach to the session if it already exists
+if [[ -z $TMUX ]] || [[ -z $tmux_running ]]; then
+    tmux new-session -A -s $session_name -n $session_name -c $session
     exit 0
 fi
 
-if ! tmux has-session -t=$session_name 2> /dev/null; then
-    tmux new-session -ds $session_name -n $session_name -c $session
+# If session doesn't exist, create a new one
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -d -s $session_name -n $session_name -c $session
 fi
 
 tmux switch-client -t $session_name
+
