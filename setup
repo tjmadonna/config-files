@@ -21,11 +21,11 @@ ln -s $PWD/tmux/bin/tmux-sessionizer ~/.config/tmux/bin/tmux-sessionizer
 # neovim
 ln -s $PWD/nvim ~/.config
 
+# alacritty
+ln -s $PWD/alacritty ~/.config
+
 # idea
 ln -s $PWD/idea/.ideavimrc ~/.ideavimrc
-
-# kitty
-ln -s $PWD/kitty ~/.config
 
 # check if vscode-js-debug is already cloned
 if [ ! -d ~/.local/share/nvim/mason/packages ]; then
