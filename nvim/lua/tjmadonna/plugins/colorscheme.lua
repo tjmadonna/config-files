@@ -16,9 +16,9 @@ return {
         NormalFloat = { bg = colors.dark0_bg, fg = colors.fg1 },
         WinSeparator = { fg = colors.light1 },
 
-        DiffDelete = { bg = colors.faded_red, fg = colors.faded_red },
-        DiffAdd = { bg = colors.faded_green, fg = colors.faded_green },
-        DiffChange = { bg = colors.faded_aqua, fg = colors.faded_aqua },
+        DiffDelete = { bg = colors.faded_red, fg = colors.bg0 },
+        DiffAdd = { bg = colors.faded_green, fg = colors.bg0 },
+        DiffChange = { bg = colors.faded_aqua, fg = colors.bg0 },
         DiffText = { bg = colors.bright_aqua, fg = colors.bg0 },
 
         GitSignsAdd = { link = "DiffAdd" },
