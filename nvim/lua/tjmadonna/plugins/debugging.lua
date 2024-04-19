@@ -251,11 +251,15 @@ return {
     keymap.set("n", "<leader>dt", "<cmd>DapTerminate<cr>", { desc = "Terminate debugging" })
     keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Toggle debug breakpoint" })
 
-    vim.keymap.set("n", "<F5>", dap.continue, { desc = "Start/Continue debug session" })
-    vim.keymap.set("n", "<F6>", dap.continue, { desc = "Terminate debug session" })
+    keymap.set("n", "<f1>", dap.step_into, { desc = "Step into next debug statement" })
+    keymap.set("n", "<f2>", dap.step_over, { desc = "Step over next debug statement" })
+    keymap.set("n", "<f3>", dap.step_out, { desc = "Step out of next debug statement" })
 
-    vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Step into next debug statement" })
-    vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Step over next debug statement" })
-    vim.keymap.set("n", "<F3>", dap.step_out, { desc = "Step out of next debug statement" })
+    keymap.set("n", "<leader>ds", function()
+      local widgets = require("dap.ui.widgets")
+      widgets.centered_float(widgets.sessions).open()
+    end, { desc = "Open list of debug sessions" })
+
+    keymap.set("n", "<leader>dl", "<cmd>DapLaunchLoad<cr>",{ desc = "Load debug configuration" })
   end,
 }
