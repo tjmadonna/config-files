@@ -72,6 +72,8 @@ bindkey '^e' edit-command-line
 # Use k to accept autosuggestions
 bindkey '^k' autosuggest-accept
 
+bindkey -s '^f' 'tmux-sessionizer\n'
+
 # Add Homebrew to path
 export PATH=$PATH:/opt/homebrew/bin
 

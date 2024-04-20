@@ -20,6 +20,9 @@ keymap.set("n", "J", "mzJ`z", { desc = "Append below line to current line with a
 keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump half a page down while keeping cursor in same spot" })
 keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump half a page up while keeping cursor in same spot" })
 
+-- open the tmux-sessionizer
+keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux-sessionizer" })
+
 -- keep search term in middle when searching
 keymap.set("n", "n", "nzzzv", { desc = "Keep search term in middle when searching" })
 keymap.set("n", "N", "Nzzzv", { desc = "Keep search term in middle when searching" })
