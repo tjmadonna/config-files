@@ -36,6 +36,7 @@ return {
           "lua",
           "markdown",
           "markdown_inline",
+          "python",
           "query",
           "rust",
           "sql",
@@ -53,6 +54,13 @@ return {
             scope_incremental = false,
             node_decremental = "<bs>",
           },
+        },
+      })
+
+      require("nvim-treesitter.configs").setup({
+        highlight = {
+          enable = true, -- false will disable the whole extension
+          disable = {}, -- list of language that will be disabled
         },
       })
 
