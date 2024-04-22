@@ -30,10 +30,10 @@ keymap.set("n", "N", "Nzzzv", { desc = "Keep search term in middle when searchin
 -- search and replace word under cursor
 keymap.set("n", "<leader>sr", ":%s/<C-r><C-w>//g<left><left>", { desc = "Search and replace word under cursor" })
 keymap.set(
-  "v",
-  "<leader>sr",
-  "<ESC>:%s/\\%V<C-r><C-w>//g<left><left>",
-  { desc = "Search and replace word under cursor" }
+	"v",
+	"<leader>sr",
+	"<ESC>:%s/\\%V<C-r><C-w>//g<left><left>",
+	{ desc = "Search and replace word under cursor" }
 )
 
 -- copy, paste over something but maintain copied text
@@ -53,8 +53,8 @@ keymap.set("n", "<C-w><C-k>", ":resize -3<CR>", { desc = "Resize Window Up", nor
 keymap.set("n", "<C-w><C-j>", ":resize +3<CR>", { desc = "Resize Window Down", noremap = true, silent = true })
 keymap.set("n", "<C-w><C-h>", ":vertical resize +3<CR>", { desc = "Resize Window Left", noremap = true, silent = true })
 keymap.set(
-  "n",
-  "<C-w><C-l>",
-  ":vertical resize -3<CR>",
-  { desc = "Resize Window Right", noremap = true, silent = true }
+	"n",
+	"<C-w><C-l>",
+	":vertical resize -3<CR>",
+	{ desc = "Resize Window Right", noremap = true, silent = true }
 )

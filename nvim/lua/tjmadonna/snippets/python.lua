@@ -3,7 +3,7 @@ local s = ls.snippet
 local t = ls.text_node
 
 return {
-  s("docnumpy", {
-    t({ '"""', "", "Parameters", "----------", "", "Returns", "-------", "", '"""' }),
-  }),
+	s("docnumpy", {
+		t({ '"""', "", "Parameters", "----------", "", "Returns", "-------", "", '"""' }),
+	}),
 }
