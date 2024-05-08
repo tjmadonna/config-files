@@ -147,3 +147,8 @@ function kill-docker {
 # Load zsh-syntax-highlighting and zsh-autosuggestions; should be last.
 source $HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source $HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+
+# check if the current directory is $HOME
+if [ "$PWD" = "$HOME" ]; then
+    cd $HOME/Development
+fi
