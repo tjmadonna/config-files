@@ -97,6 +97,10 @@ function ff {
     tmux-sessionizer
 }
 
+function projectsff {
+    nvim $PROJ_FILE
+}
+
 function addff {
     # check if input is a directory
     if [ -d "$1" ]; then
