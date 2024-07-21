@@ -16,8 +16,9 @@ require("lazy").setup({ { import = "tjmadonna.plugins" }, { import = "tjmadonna.
     colorscheme = { "catppuccin" },
   },
   checker = {
-    enabled = true,
+    enabled = false,
     notify = false,
+    check_pinned = true,
   },
   change_detection = {
     notify = false,
