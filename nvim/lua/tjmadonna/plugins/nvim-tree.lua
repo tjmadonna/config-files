@@ -85,16 +85,6 @@ return {
           },
         },
       },
-      filters = {
-        enable = true,
-        git_ignored = true,
-      },
-      filesystem_watchers = {
-        enable = true,
-      },
-      git = {
-        enable = true,
-      },
     })
 
     -- keymaps
