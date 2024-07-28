@@ -24,6 +24,9 @@ ln -s $PWD/nvim ~/.config
 # alacritty
 ln -s $PWD/alacritty ~/.config
 
+# wezterm
+ln -s $PWD/wezterm ~/.config
+
 # idea
 ln -s $PWD/idea/.ideavimrc ~/.ideavimrc
 
