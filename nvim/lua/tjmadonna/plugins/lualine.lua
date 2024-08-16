@@ -1,5 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
+  lazy = false,
+  priority = 999,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -42,6 +44,7 @@ return {
 				lualine_z = { "location" },
 			},
 		})
+    lualine.refresh() -- prevents tabline UI glitches on startup
 
 		local keymap = vim.keymap -- for conciseness
 		for i = 1, 9 do
