@@ -1,3 +1,5 @@
+vim.g.copilot_ignore_node_version = "v:true"
+
 return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
