@@ -72,80 +72,56 @@ bindkey '^e' edit-command-line
 # Use k to accept autosuggestions
 bindkey '^k' autosuggest-accept
 
-bindkey -s '^f' 'tmux-sessionizer\n'
-
-# Add Homebrew to path
-export PATH=$PATH:/opt/homebrew/bin
-
-# Add node20 to path
-export PATH=$PATH:/opt/homebrew/opt/node@20/bin
+# Add rust tools to path
+export PATH=$HOME/.cargo/bin:$PATH
 
 # Add Visual Studio Code (code)
-export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
 
-# Add rust tools to path
-export PATH=$PATH:$HOME/.cargo/bin
+# Add node20 to path
+export PATH=/opt/homebrew/opt/node@20/bin:$PATH
 
 # Add mason tools to path
-export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
+export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
-# Setup tmux-sessionizer
-export PATH=$PATH:$HOME/.config/tmux/bin
-export PROJ_FILE=$HOME/.config/tmux/projects
-
-function ff {
-    tmux-sessionizer
-}
-
-function projectsff {
-    nvim $PROJ_FILE
-}
-
-function addff {
-    # check if input is a directory
-    if [ -d "$1" ]; then
-        # check if the project file exists
-        if ! test -f $PROJ_FILE; then
-            echo "Creating $PROJ_FILE"
-            touch $PROJ_FILE
-        fi
-
-        # check if the project is already in the file
-        if grep -q "^$1$" $PROJ_FILE; then
-            echo "Project already in $PROJ_FILE"
-            return
-        fi
-        echo "Adding $1 to $PROJ_FILE"
-        echo "$1" >> "$PROJ_FILE"
-    else
-        echo "Not a directory: $1"
-    fi
-}
-
-function rmff {
-    # check if input is a directory
-    if [ -d "$1" ]; then
-        if test -f $PROJ_FILE; then
-            # check if the project is already in the file
-            if grep -q "^$1$" $PROJ_FILE; then
-                # replace all / in input with \/ to escape them
-                echo "Removing $1 from $PROJ_FILE"
-                sed -i "" -e "/^${1//\//\\/}$/d" $PROJ_FILE
-            else
-                echo "Project not in $PROJ_FILE"
-                return
-            fi
-        else
-            echo "$PROJ_FILE does not exist"
-        fi
-    else
-        echo "Not a directory: $1"
-    fi
-}
+# Add Homebrew to path
+export PATH=/opt/homebrew/bin:$PATH
 
 # macro to kill the docker desktop app and the VM (excluding vmnetd -> it's a service)
 function kill-docker {
     ps ax|grep -i docker|egrep -iv 'grep|com.docker.vmnetd'|awk '{print $1}'|xargs kill
+}
+
+function kill-port {
+    # Check if a port number is provided
+    if [ -z "$1" ]; then
+      echo "Usage: $0 <port>"
+      exit 1
+    fi
+
+    # Check if the port number is a number
+    if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+      echo "Port argument must be a number"
+      exit 1
+    fi
+
+    PORT=$1
+
+    # Find the process ID (PID) using the specified port
+    PID=$(lsof -t -i:$PORT)
+
+    # Check if a process is found
+    if [ -z "$PID" ]; then
+      echo "No process found running on port $PORT"
+      exit 1
+    fi
+
+    # Loop through each process ID and kill it
+    for id in $PID; do
+      kill -9 $id
+    done
+
+    echo "Processes running on port $PORT has been killed"
 }
 
 # Load zsh-syntax-highlighting and zsh-autosuggestions; should be last.

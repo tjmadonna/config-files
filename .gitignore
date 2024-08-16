@@ -1,5 +1,6 @@
 .DS_Store
 .luarc.json
 .ignore
+.git/
 nvim/plugin/
 nvim/lazy-lock.json
