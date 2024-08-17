@@ -32,10 +32,6 @@ if [ ! -d ~/.local/share/nvim/mason/packages/vscode-js-debug ]; then
     latestTag=$(git describe --tags "$(git rev-list --tags --max-count=1)")
     git checkout $latestTag
 
-    # build to dist directory
-    export NVM_DIR=~/.nvm
-    source $(brew --prefix nvm)/nvm.sh # activate node
-
     npm install --legacy-peer-deps
     npx gulp vsDebugServerBundle
     mv dist out
