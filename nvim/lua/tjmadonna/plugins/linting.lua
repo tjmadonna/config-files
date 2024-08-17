@@ -5,13 +5,13 @@ end, {})
 
 return {
 	"mfussenegger/nvim-lint",
-	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require("lint")
 
 		local function conditional_lint(filename, linter)
 			-- disable linter if there is no config file
-			local files = vim.fn.glob("./" .. filename .. "*") -- some comment
+			local files = vim.fn.glob("./" .. filename .. "*")
 			if files == "" then
 				return {}
 			end
