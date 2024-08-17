@@ -4,8 +4,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		build = ":TSUpdate",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			"windwp/nvim-ts-autotag",
+      { "windwp/nvim-ts-autotag", lazy = true },
 		},
 		config = function()
 			-- import nvim-treesitter plugin
@@ -63,9 +62,6 @@ return {
 					disable = {}, -- list of language that will be disabled
 				},
 			})
-
-			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-			require("ts_context_commentstring").setup({})
 		end,
 	},
 }
