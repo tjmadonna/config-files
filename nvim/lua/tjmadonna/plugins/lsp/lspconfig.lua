@@ -1,13 +1,4 @@
-local function ts_organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = "",
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
-local function svelte_organize_imports()
+local function organize_imports()
   vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
 end
 
@@ -78,8 +69,9 @@ return {
         vim.api.nvim_create_user_command("OrganizeImports", py_organize_imports, { desc = "Organize Imports" })
       end
 
-      if client.name == "svelte" then
-        vim.api.nvim_create_user_command("OrganizeImports", svelte_organize_imports, { desc = "Organize Imports" })
+      if vim.tbl_contains({ "tsserver", "svelte" }, client.name) then
+        -- add custom command to organize imports for typescript, javascript, and svelte
+        vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
       end
     end
 
@@ -202,12 +194,6 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
-      commands = {
-        OrganizeImports = {
-          ts_organize_imports,
-          description = "Typescript Organize Imports",
-        },
-      },
     })
   end,
 }
