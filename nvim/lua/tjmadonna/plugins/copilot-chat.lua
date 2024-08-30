@@ -10,7 +10,14 @@ return {
       { "nvim-lua/plenary.nvim" },
     },
     opts = {
-      debug = false, -- Enable debugging
+      debug = false,
+      show_help = false,
+      mappings = {
+        close = {
+          normal = "",
+          insert = "",
+        },
+      },
     },
   },
 }
