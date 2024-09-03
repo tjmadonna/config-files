@@ -66,29 +66,29 @@ config.colors = {
     inactive_tab = {
       bg_color = bgColor,
       fg_color = fgColor,
-    }
-  }
+    },
+  },
 }
 
 config.leader = { key = "a", mods = "CTRL" }
 config.keys = {
-  { key = "m", mods = "CTRL",     action = wezterm.action.DisableDefaultAssignment },
+  { key = "m", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
   { key = "m", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("maximize-window") },
-  { key = "f", mods = "CTRL",     action = wezterm.action_callback(sessionizer.toggle) },
-  { key = "c", mods = "LEADER",   action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
-  { key = "x", mods = "LEADER",   action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
-  { key = "p", mods = "LEADER",   action = wezterm.action.ActivateTabRelative(-1) },
-  { key = "n", mods = "LEADER",   action = wezterm.action.ActivateTabRelative(1) },
-  { key = "1", mods = "LEADER",   action = wezterm.action({ ActivateTab = 0 }) },
-  { key = "2", mods = "LEADER",   action = wezterm.action({ ActivateTab = 1 }) },
-  { key = "3", mods = "LEADER",   action = wezterm.action({ ActivateTab = 2 }) },
-  { key = "4", mods = "LEADER",   action = wezterm.action({ ActivateTab = 3 }) },
-  { key = "5", mods = "LEADER",   action = wezterm.action({ ActivateTab = 4 }) },
-  { key = "6", mods = "LEADER",   action = wezterm.action({ ActivateTab = 5 }) },
-  { key = "7", mods = "LEADER",   action = wezterm.action({ ActivateTab = 6 }) },
-  { key = "8", mods = "LEADER",   action = wezterm.action({ ActivateTab = 7 }) },
-  { key = "9", mods = "LEADER",   action = wezterm.action({ ActivateTab = 8 }) },
-  { key = "0", mods = "LEADER",   action = wezterm.action({ ActivateTab = 9 }) },
+  { key = "f", mods = "CTRL", action = wezterm.action_callback(sessionizer.toggle) },
+  { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+  { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
+  { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
+  { key = "1", mods = "LEADER", action = wezterm.action({ ActivateTab = 0 }) },
+  { key = "2", mods = "LEADER", action = wezterm.action({ ActivateTab = 1 }) },
+  { key = "3", mods = "LEADER", action = wezterm.action({ ActivateTab = 2 }) },
+  { key = "4", mods = "LEADER", action = wezterm.action({ ActivateTab = 3 }) },
+  { key = "5", mods = "LEADER", action = wezterm.action({ ActivateTab = 4 }) },
+  { key = "6", mods = "LEADER", action = wezterm.action({ ActivateTab = 5 }) },
+  { key = "7", mods = "LEADER", action = wezterm.action({ ActivateTab = 6 }) },
+  { key = "8", mods = "LEADER", action = wezterm.action({ ActivateTab = 7 }) },
+  { key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
+  { key = "0", mods = "LEADER", action = wezterm.action({ ActivateTab = 9 }) },
 }
 
 config.window_frame = {

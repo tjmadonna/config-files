@@ -112,10 +112,10 @@ return {
     })
 
     -- configure htmx server
-    -- lspconfig["htmx"].setup({
-    -- 	capabilities = capabilities,
-    -- 	on_attach = on_attach,
-    -- })
+    lspconfig["htmx"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
 
     -- configure jsonls server
     lspconfig["jsonls"].setup({
