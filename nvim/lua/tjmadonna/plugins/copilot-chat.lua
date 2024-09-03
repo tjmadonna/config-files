@@ -4,7 +4,7 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     event = "InsertEnter",
-    tag = "v2.13.0",
+    tag = "v2.14.0",
     dependencies = {
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" },
