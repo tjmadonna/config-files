@@ -1,8 +1,3 @@
--- commands
-vim.api.nvim_create_user_command("LintReload", function()
-	vim.cmd("Lazy reload nvim-lint")
-end, {})
-
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
@@ -41,6 +36,23 @@ return {
 				lint.try_lint()
 			end,
 		})
+
+		-- commands
+    vim.api.nvim_create_user_command("LintReload", function()
+      vim.cmd("Lazy reload nvim-lint")
+    end, {})
+
+		vim.api.nvim_create_user_command("LintList", function()
+      local filetype = vim.bo.filetype
+      local linters = lint.linters_by_ft[filetype]
+      if linters == nil then
+        print("No current linters for '" .. filetype .. "'")
+        return
+      end
+
+      local linters_str = table.concat(linters, ", ")
+      print("Current linters for '" .. filetype .. "': " .. linters_str)
+		end, {})
 
 		-- set keymaps
 		vim.keymap.set("n", "<leader>ll", function()
