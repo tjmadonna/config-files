@@ -31,13 +31,13 @@ return {
         "emmet_ls",
         "gopls",
         "html",
-        "htmx",
+        -- "htmx",
         "jsonls",
         "lua_ls",
         "pyright",
         "svelte",
         "tailwindcss",
-        "tsserver",
+        "ts_ls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed

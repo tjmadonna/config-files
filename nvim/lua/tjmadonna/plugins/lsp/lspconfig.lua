@@ -69,7 +69,7 @@ return {
         vim.api.nvim_create_user_command("OrganizeImports", py_organize_imports, { desc = "Organize Imports" })
       end
 
-      if vim.tbl_contains({ "tsserver", "svelte" }, client.name) then
+      if vim.tbl_contains({ "ts_ls", "svelte" }, client.name) then
         -- add custom command to organize imports for typescript, javascript, and svelte
         vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
       end
@@ -190,7 +190,7 @@ return {
     })
 
     -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
+    lspconfig["ts_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
