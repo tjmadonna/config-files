@@ -4,3 +4,4 @@
 .git/
 nvim/plugin/
 nvim/lazy-lock.json
+wezterm/sessionizer-config.lua
