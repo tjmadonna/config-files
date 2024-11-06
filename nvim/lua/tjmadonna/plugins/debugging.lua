@@ -241,6 +241,11 @@ return {
     vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" })
     vim.fn.sign_define("DapStopped", { text = "󰜴", texthl = "DapStopped", numhl = "DapStopped" })
 
+    -- commands
+    vim.api.nvim_create_user_command("DapUIReload", function()
+      vim.cmd("Lazy reload nvim-dap-ui")
+    end, {})
+
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
