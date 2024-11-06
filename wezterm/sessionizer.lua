@@ -1,11 +1,12 @@
 local wezterm = require("wezterm")
+local config = require("sessionizer-config")
 local act = wezterm.action
 
 local M = {}
 
 local fd = "/opt/homebrew/bin/fd"
 local root_path = os.getenv("HOME") .. "/Development/"
-local exclude_dirs = {}
+local exclude_dirs = config.excluded_search_dirs
 
 M.toggle = function(window, pane)
   local projects = {}
