@@ -21,30 +21,6 @@ return {
         autotag = {
           enable = true,
         },
-        -- ensure these language parsers are installed
-        ensure_installed = {
-          "bash",
-          "css",
-          "dockerfile",
-          "go",
-          "gitignore",
-          "html",
-          "http",
-          "javascript",
-          "json",
-          "lua",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "query",
-          "rust",
-          "sql",
-          "svelte",
-          "tsx",
-          "typescript",
-          "yaml",
-          "vim",
-        },
         incremental_selection = {
           enable = true,
           keymaps = {

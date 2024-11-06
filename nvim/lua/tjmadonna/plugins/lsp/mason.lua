@@ -24,35 +24,8 @@ return {
       },
     })
 
-    mason_lspconfig.setup({
-      -- list of servers for mason to install
-      ensure_installed = {
-        "cssls",
-        "emmet_ls",
-        "gopls",
-        "html",
-        -- "htmx",
-        "jsonls",
-        "lua_ls",
-        "pyright",
-        "svelte",
-        "tailwindcss",
-        "ts_ls",
-      },
-      -- auto-install configured servers (with lspconfig)
-      automatic_installation = true, -- not the same as ensure_installed
-    })
+    mason_lspconfig.setup({})
 
-    mason_tool_installer.setup({
-      ensure_installed = {
-        "eslint_d", -- js/ts linter
-        "prettier", -- js/ts prettier formatter
-        "black", -- python formatter
-        "flake8", -- python linter
-        "debugpy", -- python debugger
-        "isort", -- python formatter
-        "stylua", -- lua formatter
-      },
-    })
+    mason_tool_installer.setup({})
   end,
 }
