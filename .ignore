@@ -1,0 +1,3 @@
+.git/
+!.ignore
+!wezterm/sessionizer-config.lua
