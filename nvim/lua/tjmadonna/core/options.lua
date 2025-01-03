@@ -18,6 +18,8 @@ opt.colorcolumn = "80"
 
 -- line wrapping
 opt.wrap = false
+opt.textwidth = 0
+opt.wrapmargin = 0
 
 -- search settings
 opt.ignorecase = true
