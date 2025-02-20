@@ -131,6 +131,7 @@ end, {})
 local type_to_filetypes = {
   ["pwa-chrome"] = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
   ["go"] = { "go" },
+  ["pyright"] = { "python" },
   ["python"] = { "python" },
 }
 
