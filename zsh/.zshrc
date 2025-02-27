@@ -182,15 +182,6 @@ function kill-port {
     echo "Processes running on port $PORT has been killed"
 }
 
-# MacOS specific settings
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    # Set font smoothing to 0, this prevents unnecessary bold fonts in alacritty
-    if [ $(defaults read -g AppleFontSmoothing) -ne 0 ]; then
-        echo "Setting font smoothing to 0"
-        defaults write -g AppleFontSmoothing -int 0
-    fi
-fi
-
 # Load zsh-syntax-highlighting and zsh-autosuggestions; should be last.
 source $HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source $HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
