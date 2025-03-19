@@ -156,14 +156,14 @@ function kill-docker {
 function kill-port {
     # Check if a port number is provided
     if [ -z "$1" ]; then
-      echo "Usage: $0 <port>"
-      exit 1
+      echo "Usage: $0 <port: int>"
+      return
     fi
 
     # Check if the port number is a number
     if ! [[ "$1" =~ ^[0-9]+$ ]]; then
       echo "Port argument must be a number"
-      exit 1
+      return
     fi
 
     PORT=$1
@@ -174,7 +174,7 @@ function kill-port {
     # Check if a process is found
     if [ -z "$PID" ]; then
       echo "No process found running on port $PORT"
-      exit 1
+      return
     fi
 
     # Loop through each process ID and kill it
