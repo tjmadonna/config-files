@@ -35,13 +35,20 @@ if [ ! -d ~/.local/share/nvim/mason/packages ]; then
   mkdir -p ~/.local/share/nvim/mason/packages
 fi
 
-if [ ! -d ~/.local/share/nvim/mason/packages/vscode-js-debug ]; then
-    git clone https://github.com/microsoft/vscode-js-debug.git ~/.local/share/nvim/mason/packages/vscode-js-debug
-    cd ~/.local/share/nvim/mason/packages/vscode-js-debug
-    latestTag=$(git describe --tags "$(git rev-list --tags --max-count=1)")
-    git checkout $latestTag
+# setup vscode-js-debug dap
+if [ ! -d ~/.local/share/nvim/mason/packages/js-debug-dap ]; then
+    # Use jq to extract both tag_name and browser_download_url in one go
+    js_dap_version_and_url=$(curl -s https://api.github.com/repos/microsoft/vscode-js-debug/releases/latest | jq -r '
+      .tag_name as $tag_name |
+      .assets[] | select(.name | test("js-debug-dap-v")) | "\($tag_name) \(.browser_download_url)"
+    ')
 
-    npm install --legacy-peer-deps
-    npx gulp vsDebugServerBundle
-    mv dist out
+    js_dap_version=$(echo "$js_dap_version_and_url" | awk '{print $1}')
+    js_dap_url=$(echo "$js_dap_version_and_url" | awk '{print $2}')
+
+    curl -L -o ~/.local/share/nvim/mason/packages/js-debug-dap.tar.gz "$js_dap_url"
+    mkdir -p ~/.local/share/nvim/mason/packages/js-debug-dap
+    tar -xzf ~/.local/share/nvim/mason/packages/js-debug-dap.tar.gz -C ~/.local/share/nvim/mason/packages/js-debug-dap --strip-components=1
+    rm ~/.local/share/nvim/mason/packages/js-debug-dap.tar.gz
+    echo "js-debug-dap version $js_dap_version downloaded and extracted."
 fi
