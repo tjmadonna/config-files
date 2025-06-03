@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# macos
+defaults write -g InitialKeyRepeat -int 10
+defaults write -g KeyRepeat -int 2
 
 # zsh
 ln -s $PWD/zsh/.zprofile ~/.zprofile
