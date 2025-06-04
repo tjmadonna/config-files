@@ -7,8 +7,11 @@ return {
     "L3MON4D3/LuaSnip", -- snippet engine
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
+    "zbirenbaum/copilot-cmp", -- copilot integration with nvim-cmp
   },
   config = function()
+    require("copilot_cmp").setup()
+
     local cmp = require("cmp")
 
     local luasnip = require("luasnip")
@@ -33,45 +36,16 @@ return {
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        ["<C-e>"] = cmp.mapping(function(fallback)
-          local suggestion = require("copilot.suggestion")
-          if suggestion.is_visible() then
-            suggestion.dismiss() -- dismiss copilot suggestion
-          elseif cmp.visible() then
-            cmp.abort() -- close cmp menu
-          else
-            fallback()
-          end
-        end),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          local suggestion = require("copilot.suggestion")
-          if cmp.visible() then
-            cmp.abort() -- close cmp menu
-          end
-
-          if suggestion.is_visible() then
-            suggestion.accept() -- accept copilot suggestion
-          else
-            fallback()
-          end
-        end),
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "copilot" }, -- copilot suggestions
+        { name = "nvim_lua" }, -- nvim lua API
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
       }),
     })
-
-    -- hide copilot suggestions when cmp menu is open
-    cmp.event:on("menu_opened", function()
-      vim.b.copilot_suggestion_hidden = true
-    end)
-
-    cmp.event:on("menu_closed", function()
-      vim.b.copilot_suggestion_hidden = false
-    end)
   end,
 }

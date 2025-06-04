@@ -18,7 +18,7 @@ return {
         },
       },
       suggestion = {
-        enabled = true,
+        enabled = false,
         auto_trigger = true,
         debounce = 75,
         keymap = {
