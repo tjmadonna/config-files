@@ -24,7 +24,7 @@ PS1=$'%B%{$fg[blue]%}%1~ %{$fg[magenta]%}$(git_prompt)%{$fg[yellow]%}$(python_ve
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/.zsh_history
+HISTFILE=$HOME/.cache/zsh/.zsh_history
 
 # Basic auto/tab complete:
 autoload -U compinit
