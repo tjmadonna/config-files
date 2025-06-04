@@ -1,12 +1,13 @@
 return {
   "nvim-neotest/neotest",
-  ft = "python",
+  ft = "python,go",
   dependencies = {
     { "nvim-neotest/nvim-nio", lazy = true },
     { "nvim-lua/plenary.nvim", lazy = true },
     { "antoinemadec/FixCursorHold.nvim", lazy = true },
     { "nvim-treesitter/nvim-treesitter", lazy = true },
     { "nvim-neotest/neotest-python", lazy = true },
+    { "nvim-neotest/neotest-go", lazy = true },
   },
   config = function()
     require("neotest").setup({
@@ -20,6 +21,9 @@ return {
             -- Check if the file is a test file.
             return file_path:match("test_.*%.py$") ~= nil
           end,
+        }),
+        require("neotest-go")({
+          args = { "-count=1", "-timeout=60s" },
         }),
       },
     })
