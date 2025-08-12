@@ -185,6 +185,62 @@ function kill-port {
     echo "Processes running on port $PORT has been killed"
 }
 
+function encrypted-archive {
+    # Check if a directory is provided
+    if [ -z "$1" ]; then
+        echo "Usage: $0 <directory>"
+        return
+    fi
+    DIR=$1
+    # Check if the directory exists
+    if [ ! -d "$DIR" ]; then
+        echo "Directory $DIR does not exist"
+        return
+    fi
+
+    # Create the tar archive name and 7zip name
+    TAR_NAME="${DIR%/}.tar"
+    ZIP_NAME="${DIR%/}.tar.7z"
+
+    # Create tar archive, c: create, f: file name
+    tar -cf $TAR_NAME $DIR
+    if [ $? -ne 0 ]; then
+        echo "Failed to create tar archive"
+        return
+    fi
+
+    # Encrypt the tar archive using 7zip
+    7zz a -p -mhe=on $ZIP_NAME $TAR_NAME
+
+    # Delete the tar archive
+    rm -f $TAR_NAME
+}
+
+function encrypted-unarchive {
+    # Check if a 7z archive is provided
+    if [ -z "$1" ]; then
+        echo "Usage: $0 <archive.7z>"
+        return
+    fi
+    ARCHIVE=$1
+    # Check if the archive exists
+    if [ ! -f "$ARCHIVE" ]; then
+        echo "Archive $ARCHIVE does not exist"
+        return
+    fi
+
+    # Descript the 7z archive using 7zip
+    7zz x "$ARCHIVE"
+    if [ $? -ne 0 ]; then
+        echo "Failed to extract 7zip archive"
+        return
+    fi
+
+    TAR_NAME="${ARCHIVE%.7z}"
+    tar xvf $TAR_NAME
+    rm -f $TAR_NAME
+}
+
 # Load zsh-syntax-highlighting and zsh-autosuggestions; should be last.
 source $HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source $HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
