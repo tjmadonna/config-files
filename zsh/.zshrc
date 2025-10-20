@@ -79,7 +79,14 @@ bindkey '^k' autosuggest-accept
 bindkey -s '^f' "tmux-sessionizer\n"
 
 # Add rust tools to path
-export PATH=$HOME/.cargo/bin:$PATH
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH=$HOME/.cargo/bin:$PATH
+fi
+
+# Add Go to path
+if [ -d "$HOME/go/bin" ]; then
+    export PATH=$HOME/go/bin:$PATH
+fi
 
 # Add Visual Studio Code (code)
 export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
@@ -89,7 +96,6 @@ export PATH=/opt/homebrew/bin:$PATH
 
 # Add node20 to path
 export PATH=/opt/homebrew/opt/node@20/bin:$PATH
-
 
 # Setup tmux-sessionizer
 export PATH=$PATH:$HOME/.config/tmux/bin
@@ -179,7 +185,7 @@ function kill-port {
 
     # Loop through each process ID and kill it
     for id in $PID; do
-      kill -9 $id
+      kill $id
     done
 
     echo "Processes running on port $PORT has been killed"
