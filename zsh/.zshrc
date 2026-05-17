@@ -94,8 +94,10 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$P
 # Add Homebrew to path
 export PATH=/opt/homebrew/bin:$PATH
 
-# Add node20 to path
-export PATH=/opt/homebrew/opt/node@20/bin:$PATH
+NODE_VERSION=22
+
+# Add node to path
+export PATH=/opt/homebrew/opt/node@$NODE_VERSION/bin:$PATH
 
 # Setup tmux-sessionizer
 export PATH=$PATH:$HOME/.config/tmux/bin
