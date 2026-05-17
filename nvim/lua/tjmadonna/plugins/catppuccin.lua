@@ -38,6 +38,7 @@ return {
         treesitter = true,
         notify = false,
         telescope = true,
+        lualine = true,
       },
     })
 

@@ -3,6 +3,7 @@ return {
   lazy = false,
   priority = 999,
   dependencies = {
+    "catppuccin/nvim",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
