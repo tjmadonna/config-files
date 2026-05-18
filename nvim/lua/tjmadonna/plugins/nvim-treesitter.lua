@@ -1,43 +1,20 @@
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
-    build = ":TSUpdate",
-    dependencies = {
-      { "windwp/nvim-ts-autotag", lazy = true },
-    },
-    config = function()
-      -- import nvim-treesitter plugin
-      local treesitter = require("nvim-treesitter.configs")
-
-      -- configure treesitter
-      treesitter.setup({ -- enable syntax highlighting
-        highlight = {
-          enable = true,
-        },
-        -- enable indentation
-        indent = { enable = true },
-        -- enable autotagging (w/ nvim-ts-autotag plugin)
-        autotag = {
-          enable = true,
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = false,
-            node_decremental = "<bs>",
-          },
-        },
-      })
-
-      require("nvim-treesitter.configs").setup({
-        highlight = {
-          enable = true, -- false will disable the whole extension
-          disable = {}, -- list of language that will be disabled
-        },
-      })
-    end,
+  "nvim-treesitter/nvim-treesitter",
+  branch = "main",
+  event = { "BufReadPre", "BufNewFile" },
+  build = ":TSUpdate",
+  dependencies = {
+    { "windwp/nvim-ts-autotag", lazy = true },
   },
+  config = function()
+    require("nvim-treesitter").setup()
+    require("nvim-ts-autotag").setup()
+
+    -- Start native treesitter
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function()
+        pcall(vim.treesitter.start)
+      end,
+    })
+  end,
 }
