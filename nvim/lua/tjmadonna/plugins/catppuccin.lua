@@ -33,11 +33,15 @@ return {
       },
       integrations = {
         cmp = true,
+        dap_ui = true,
         gitsigns = true,
-        nvimtree = true,
+        neotest = false,
+        nvimtree = false,
         treesitter = true,
         notify = false,
-        telescope = true,
+        telescope = {
+          enabled = true,
+        },
         lualine = {},
       },
     })
