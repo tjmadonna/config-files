@@ -3,6 +3,7 @@
 - css
 - dockerfile
 - go
+- gitcommit
 - gitignore
 - html
 - http
@@ -16,6 +17,7 @@
 - rust
 - sql
 - svelte
+- toml
 - tsx
 - typescript
 - yaml
@@ -27,6 +29,7 @@
 - gopls
 - html
 - htmx
+- js-debug-adapter
 - jsonls
 - lua_ls
 - pyright
