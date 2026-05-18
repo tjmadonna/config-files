@@ -3,7 +3,6 @@ return {
   lazy = false,
   priority = 999,
   dependencies = {
-    "catppuccin/nvim",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
@@ -11,7 +10,6 @@ return {
 
     lualine.setup({
       options = {
-        theme = "catppuccin",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
       },
