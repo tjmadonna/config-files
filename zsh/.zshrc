@@ -249,26 +249,10 @@ function encrypted-unarchive {
     rm -f $TAR_NAME
 }
 
-# Auto-activate/deactivate venv based on directory
-auto_venv() {
-  if [ -d "venv" ] && [ -f "venv/bin/activate" ]; then
-    # Activate only if not already in this venv
-    if [ "$VIRTUAL_ENV" != "$(pwd)/venv" ]; then
-      source venv/bin/activate
-    fi
-  elif [ -n "$VIRTUAL_ENV" ]; then
-    # Deactivate if we've left a venv directory
-    deactivate
-  fi
-}
-
-# Run on directory change
-cd() {
-  builtin cd "$@" && auto_venv
-}
-
-# Run on shell start (catches tmux session open)
-auto_venv
+# Activate Python virtual environment if in tmux and venv exists
+if [ -n "$TMUX" ] && [ -f "venv/bin/activate" ]; then
+  source venv/bin/activate
+fi
 
 # Load zsh-syntax-highlighting and zsh-autosuggestions; should be last.
 source $HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
