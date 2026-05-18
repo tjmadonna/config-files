@@ -1,5 +1,11 @@
 local function organize_imports()
-  vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+  vim.lsp.buf.code_action({
+    context = {
+      only = { "source.organizeImports" },
+      diagnostics = vim.diagnostic.get(0),
+    },
+    apply = true,
+  })
 end
 
 local function py_organize_imports()
@@ -15,74 +21,10 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-
-    -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local keymap = vim.keymap
 
-    local keymap = vim.keymap -- for conciseness
-
-    local opts = { noremap = true, silent = true }
-    local on_attach = function(client, bufnr)
-      opts.buffer = bufnr
-
-      -- set keybinds
-      opts.desc = "Show LSP references"
-      keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
-
-      opts.desc = "Go to declaration"
-      keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
-
-      opts.desc = "Show diagnostics in pop up"
-      keymap.set("n", "gl", vim.diagnostic.open_float, opts) -- show diagnostics in popup
-
-      opts.desc = "Show buffer diagnostics"
-      keymap.set("n", "gL", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-
-      opts.desc = "Show LSP definitions"
-      keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-
-      opts.desc = "Show LSP implementations"
-      keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-
-      opts.desc = "Show LSP type definitions"
-      keymap.set("n", "gT", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-      opts.desc = "See available code actions"
-      keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-      opts.desc = "Smart rename"
-      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-      opts.desc = "Go to previous diagnostic"
-      keymap.set("n", "[d", function()
-        vim.diagnostic.jump({ count = -1, float = true })
-      end, opts) -- jump to previous diagnostic in buffer
-
-      opts.desc = "Go to next diagnostic"
-      keymap.set("n", "]d", function()
-        vim.diagnostic.jump({ count = 1, float = true })
-      end, opts) -- jump to next diagnostic in buffer
-
-      opts.desc = "Show documentation for what is under cursor"
-      keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-      if client.name == "pyright" then
-        -- add custom command to organize imports for python
-        vim.api.nvim_create_user_command("OrganizeImports", py_organize_imports, { desc = "Organize Imports" })
-      end
-
-      if vim.tbl_contains({ "ts_ls", "svelte" }, client.name) then
-        -- add custom command to organize imports for typescript, javascript, and svelte
-        vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
-      end
-    end
-
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
+    -- Diagnostic signs
     vim.diagnostic.config({
       signs = {
         text = {
@@ -94,55 +36,86 @@ return {
       },
     })
 
-    -- configure css server
-    lspconfig["cssls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
+    -- Global LSP config (applies to all servers)
+    vim.lsp.config("*", {
+      capabilities = cmp_nvim_lsp.default_capabilities(),
     })
 
-    -- configure emmet language server
-    lspconfig["emmet_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
+    -- Keymaps and per-client setup on attach
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        local opts = { noremap = true, silent = true, buffer = ev.buf }
+
+        opts.desc = "Show LSP references"
+        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+
+        opts.desc = "Go to declaration"
+        keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+        opts.desc = "Show diagnostics in popup"
+        keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+
+        opts.desc = "Show buffer diagnostics"
+        keymap.set("n", "gL", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+
+        opts.desc = "Show LSP definitions"
+        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+
+        opts.desc = "Show LSP implementations"
+        keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
+
+        opts.desc = "Show LSP type definitions"
+        keymap.set("n", "gT", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+
+        opts.desc = "See available code actions"
+        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+        opts.desc = "Smart rename"
+        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+        opts.desc = "Go to previous diagnostic"
+        keymap.set("n", "[d", function()
+          vim.diagnostic.jump({ count = -1, float = true })
+        end, opts)
+
+        opts.desc = "Go to next diagnostic"
+        keymap.set("n", "]d", function()
+          vim.diagnostic.jump({ count = 1, float = true })
+        end, opts)
+
+        opts.desc = "Show documentation for what is under cursor"
+        keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+        if client and client.name == "pyright" then
+          vim.api.nvim_create_user_command("OrganizeImports", py_organize_imports, { desc = "Organize Imports" })
+        end
+
+        if client and vim.tbl_contains({ "ts_ls", "svelte" }, client.name) then
+          vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
+        end
+
+        if client and client.name == "svelte" then
+          vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = { "*.js", "*.ts" },
+            callback = function(ctx)
+              client:notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+            end,
+          })
+        end
+      end,
+    })
+
+    -- Server-specific configs
+    vim.lsp.config("emmet_ls", {
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
     })
 
-    -- configure gopls server
-    lspconfig["gopls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure html server
-    lspconfig["html"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure htmx server
-    lspconfig["htmx"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure jsonls server
-    lspconfig["jsonls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = { -- custom settings for lua
+    vim.lsp.config("lua_ls", {
+      settings = {
         Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-          },
+          diagnostics = { globals = { "vim" } },
           workspace = {
-            -- make language server aware of runtime files
             library = {
               [vim.fn.expand("$VIMRUNTIME/lua")] = true,
               [vim.fn.stdpath("config") .. "/lua"] = true,
@@ -152,10 +125,7 @@ return {
       },
     })
 
-    -- configure python server
-    lspconfig["pyright"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
+    vim.lsp.config("pyright", {
       settings = {
         python = {
           analysis = {
@@ -168,40 +138,22 @@ return {
       },
     })
 
-    -- configure rust-analyzer server
-    lspconfig["rust_analyzer"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
+    vim.lsp.config("ts_ls", {
+      root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
     })
 
-    -- configure svelte server
-    lspconfig["svelte"].setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-
-        vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = { "*.js", "*.ts" },
-          callback = function(ctx)
-            if client.name == "svelte" then
-              client:notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-            end
-          end,
-        })
-      end,
-    })
-
-    -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure typescript server with plugin
-    lspconfig["ts_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
+    -- Enable all servers
+    vim.lsp.enable({
+      "cssls",
+      "emmet_ls",
+      "gopls",
+      "html",
+      "jsonls",
+      "lua_ls",
+      "pyright",
+      "svelte",
+      "tailwindcss",
+      "ts_ls",
     })
   end,
 }
