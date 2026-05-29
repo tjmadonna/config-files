@@ -1,4 +1,5 @@
-vim.opt_local.expandtab = false
-vim.opt_local.tabstop = 8
-vim.opt_local.shiftwidth = 8
-vim.opt_local.list = true
+local opt = vim.opt_local
+opt.expandtab = false
+opt.tabstop = 8
+opt.shiftwidth = 8
+opt.list = true

@@ -1,4 +1,4 @@
-local opt = vim.opt
+local opt = vim.opt_local
 opt.colorcolumn = "120"
 opt.formatoptions:remove({ "c", "r", "o" }) -- Stop newline continution of comments
 opt.tabstop = 4
