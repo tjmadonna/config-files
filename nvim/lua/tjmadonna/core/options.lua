@@ -11,7 +11,12 @@ opt.expandtab = true
 opt.autoindent = true
 
 -- show spaces on :set list!
-opt.listchars = "tab:| ,lead:·,trail:·,eol:$"
+opt.listchars = {
+  tab = "| ",
+  lead = "^",
+  trail = "·",
+  eol = "$",
+}
 
 -- show ruler line at end of line
 opt.colorcolumn = "80"

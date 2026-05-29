@@ -9,6 +9,9 @@ keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode" })
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "Clear search highlights", silent = true })
 
+-- toggle listchars
+keymap.set("n", "<leader>lt", "<cmd>setlocal list!<cr>", { desc = "Toggle listchars" })
+
 -- move block of code
 keymap.set("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move block of code down" })
 keymap.set("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move block of code up" })
