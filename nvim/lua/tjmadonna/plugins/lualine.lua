@@ -47,7 +47,9 @@ return {
 
     local keymap = vim.keymap -- for conciseness
     for i = 1, 9 do
-      keymap.set("n", "<leader>" .. i, "<cmd>LualineBuffersJump " .. i .. "<cr>", { desc = "Select lualine item " .. i })
+      keymap.set("n", "<leader>" .. i, function()
+        pcall(vim.cmd.LualineBuffersJump, i)
+      end, { desc = "Select lualine item " .. i })
     end
   end,
 }
