@@ -31,15 +31,15 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", { desc = "Fuzzy find files in cwd" })
-    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-    keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>", { desc = "Find current marks" })
-    keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find an open buffer" })
-    keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Find diagnostics in open buffers" })
+    keymap.set("n", "<Leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { desc = "Fuzzy find files in cwd" })
+    keymap.set("n", "<Leader>fr", "<Cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
+    keymap.set("n", "<Leader>fs", "<Cmd>Telescope live_grep<CR>", { desc = "Find string in cwd" })
+    keymap.set("n", "<Leader>fc", "<Cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
+    keymap.set("n", "<Leader>fm", "<Cmd>Telescope marks<CR>", { desc = "Find current marks" })
+    keymap.set("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "Find an open buffer" })
+    keymap.set("n", "<Leader>fd", "<Cmd>Telescope diagnostics<CR>", { desc = "Find diagnostics in open buffers" })
 
-    vim.keymap.set("n", "<leader>fg", function()
+    vim.keymap.set("n", "<Leader>fg", function()
       builtin.grep_string({ search = vim.fn.input("Grep > ") })
     end, { desc = "Grep string in cwd" })
   end,

@@ -31,9 +31,9 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader>tt", "<cmd>lua require('neotest').run.run()<cr>", { desc = "Run the nearest test" })
-    keymap.set("n", "<leader>td", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", { desc = "Debug the nearest test" })
-    keymap.set("n", "<leader>tu", "<cmd>lua require('neotest').summary.toggle()<cr>", { desc = "Toggle the test summary panel" })
-    keymap.set("n", "<leader>tp", "<cmd>lua require('neotest').output_panel.toggle()<cr>", { desc = "Toggle the test output panel" })
+    keymap.set("n", "<Leader>tt", "<Cmd>lua require('neotest').run.run()<CR>", { desc = "Run the nearest test" })
+    keymap.set("n", "<Leader>td", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", { desc = "Debug the nearest test" })
+    keymap.set("n", "<Leader>tu", "<Cmd>lua require('neotest').summary.toggle()<CR>", { desc = "Toggle the test summary panel" })
+    keymap.set("n", "<Leader>tp", "<Cmd>lua require('neotest').output_panel.toggle()<CR>", { desc = "Toggle the test output panel" })
   end,
 }

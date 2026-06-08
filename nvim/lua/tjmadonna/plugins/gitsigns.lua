@@ -10,23 +10,23 @@ return {
     local opts = { noremap = true, silent = true }
 
     opts.desc = "Git Blame Line"
-    keymap.set("n", "<leader>gb", "<Cmd>Gitsigns blame_line<CR>", opts)
+    keymap.set("n", "<Leader>gb", "<Cmd>Gitsigns blame_line<CR>", opts)
 
     opts.desc = "Git Diff"
-    keymap.set("n", "<leader>gd", "<Cmd>Gitsigns diffthis<CR>", opts)
+    keymap.set("n", "<Leader>gd", "<Cmd>Gitsigns diffthis<CR>", opts)
 
     opts.desc = "Git Stage Hunk"
-    keymap.set("v", "<leader>gs", function()
+    keymap.set("v", "<Leader>gs", function()
       gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
     end, opts)
 
     opts.desc = "Git Unstage Hunk"
-    keymap.set("v", "<leader>gu", function()
+    keymap.set("v", "<Leader>gu", function()
       gitsigns.undo_stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
     end, opts)
 
     opts.desc = "Git Stage Buffer"
-    keymap.set("n", "<leader>gS", function()
+    keymap.set("n", "<Leader>gS", function()
       gitsigns.stage_buffer()
     end, opts)
   end,

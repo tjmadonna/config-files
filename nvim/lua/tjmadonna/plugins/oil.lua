@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Open cwd in oil" })
+vim.keymap.set("n", "<Leader>e", "<Cmd>Oil<CR>", { desc = "Open cwd in oil" })
 
 return {
   "stevearc/oil.nvim",

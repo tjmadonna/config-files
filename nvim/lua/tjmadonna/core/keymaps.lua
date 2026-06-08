@@ -4,17 +4,17 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 -- use kj to exit insert mode
-keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode" })
+keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "Clear search highlights", silent = true })
+keymap.set("n", "<Leader>nh", "<Cmd>nohl<CR>", { desc = "Clear search highlights", silent = true })
 
 -- toggle listchars
-keymap.set("n", "<leader>lt", "<cmd>setlocal list!<cr>", { desc = "Toggle listchars" })
+keymap.set("n", "<Leader>lt", "<Cmd>setlocal list!<CR>", { desc = "Toggle listchars" })
 
 -- move block of code
-keymap.set("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move block of code down" })
-keymap.set("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move block of code up" })
+keymap.set("v", "J", "<Cmd>m '>+1<CR>gv=gv", { desc = "Move block of code down" })
+keymap.set("v", "K", "<Cmd>m '<-2<CR>gv=gv", { desc = "Move block of code up" })
 
 -- append below line to current line with a space
 keymap.set("n", "J", "mzJ`z", { desc = "Append below line to current line with a space" })
@@ -28,26 +28,26 @@ keymap.set("n", "n", "nzzzv", { desc = "Keep search term in middle when searchin
 keymap.set("n", "N", "Nzzzv", { desc = "Keep search term in middle when searching" })
 
 -- search and replace word under cursor
-keymap.set("n", "<leader>sr", ":%s/<C-r><C-w>//g<left><left>", { desc = "Search and replace word under cursor" })
-keymap.set("v", "<leader>sr", "<ESC>:%s/\\%V<C-r><C-w>//g<left><left>", { desc = "Search and replace word under cursor" })
+keymap.set("n", "<Leader>sr", "<Cmd>%s/<C-r><C-w>//g<left><left>", { desc = "Search and replace word under cursor" })
+keymap.set("v", "<Leader>sr", "<Esc><Cmd>%s/\\%V<C-r><C-w>//g<left><left>", { desc = "Search and replace word under cursor" })
 
 -- copy, paste over something but maintain copied text
-keymap.set("x", "<leader>p", '"_dP', { desc = "Copy and paste over something but maintain copied text" })
+keymap.set("x", "<Leader>p", '"_dP', { desc = "Copy and paste over something but maintain copied text" })
 
-keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete To Void Register" })
+keymap.set({ "n", "v" }, "<Leader>d", '"_d', { desc = "Delete To Void Register" })
 
 -- copy to system clipboard
-keymap.set("n", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
-keymap.set("v", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+keymap.set("n", "<Leader>y", '"+y', { desc = "Copy to system clipboard" })
+keymap.set("v", "<Leader>y", '"+y', { desc = "Copy to system clipboard" })
 
 -- don't use Q
-keymap.set("n", "Q", "<nop>")
+keymap.set("n", "Q", "<Nop>")
 
 -- window sizing
-keymap.set("n", "<C-w><C-k>", ":resize -3<cr>", { desc = "Resize Window Up", noremap = true, silent = true })
-keymap.set("n", "<C-w><C-j>", ":resize +3<cr>", { desc = "Resize Window Down", noremap = true, silent = true })
-keymap.set("n", "<C-w><C-h>", ":vertical resize +3<cr>", { desc = "Resize Window Left", noremap = true, silent = true })
-keymap.set("n", "<C-w><C-l>", ":vertical resize -3<cr>", { desc = "Resize Window Right", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-k>", "<Cmd>resize -3<CR>", { desc = "Resize Window Up", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-j>", "<Cmd>resize +3<CR>", { desc = "Resize Window Down", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-h>", "<Cmd>vertical resize +3<CR>", { desc = "Resize Window Left", noremap = true, silent = true })
+keymap.set("n", "<C-w><C-l>", "<Cmd>vertical resize -3<CR>", { desc = "Resize Window Right", noremap = true, silent = true })
 
 -- tmux-sessionizer
-keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>", { desc = "Open tmux-sessionizer", noremap = true, silent = true })
+keymap.set("n", "<C-f>", "<Cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux-sessionizer", noremap = true, silent = true })

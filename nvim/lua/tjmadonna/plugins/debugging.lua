@@ -250,22 +250,22 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader>du", function()
+    keymap.set("n", "<Leader>du", function()
       dapui.toggle()
     end, { desc = "Toggle debugging UI" })
-    keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "Start or continue debugging" })
-    keymap.set("n", "<leader>dt", "<cmd>DapTerminate<cr>", { desc = "Terminate debugging" })
-    keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Toggle debug breakpoint" })
+    keymap.set("n", "<Leader>dc", "<Cmd>DapContinue<CR>", { desc = "Start or continue debugging" })
+    keymap.set("n", "<Leader>dt", "<Cmd>DapTerminate<CR>", { desc = "Terminate debugging" })
+    keymap.set("n", "<Leader>db", "<Cmd>DapToggleBreakpoint<CR>", { desc = "Toggle debug breakpoint" })
 
     keymap.set("n", "<f1>", dap.step_into, { desc = "Step into next debug statement" })
     keymap.set("n", "<f2>", dap.step_over, { desc = "Step over next debug statement" })
     keymap.set("n", "<f3>", dap.step_out, { desc = "Step out of next debug statement" })
 
-    keymap.set("n", "<leader>ds", function()
+    keymap.set("n", "<Leader>ds", function()
       local widgets = require("dap.ui.widgets")
       widgets.centered_float(widgets.sessions).open()
     end, { desc = "Open list of debug sessions" })
 
-    keymap.set("n", "<leader>dl", "<cmd>DapLaunchLoad<cr>", { desc = "Load debug configuration" })
+    keymap.set("n", "<Leader>dl", "<Cmd>DapLaunchLoad<CR>", { desc = "Load debug configuration" })
   end,
 }

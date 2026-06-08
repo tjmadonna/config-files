@@ -81,7 +81,7 @@ return {
     end, {})
 
     -- set keymaps
-    vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+    vim.keymap.set({ "n", "v" }, "<Leader>lf", function()
       conform.format({
         lsp_fallback = true,
         async = false,
