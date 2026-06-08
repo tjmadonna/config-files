@@ -1,5 +1,5 @@
 local function organize_imports(client_name)
-  if client_name == "pyright" then
+  if client_name == "basedpyright" then
     require("conform").format({ formatters = { "isort" }, async = false, timeout_ms = 1000 })
   else
     vim.lsp.buf.code_action({
@@ -83,7 +83,7 @@ return {
         opts.desc = "Show documentation for what is under cursor"
         keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-        if client and vim.tbl_contains({ "pyright", "ts_ls", "svelte" }, client.name) then
+        if client and vim.tbl_contains({ "basedpyright", "ts_ls", "svelte" }, client.name) then
           if vim.fn.exists(":OrganizeImports") == 0 then
             vim.api.nvim_create_user_command("OrganizeImports", function()
               organize_imports(client.name)
@@ -101,6 +101,12 @@ return {
         -- end
       end,
     })
+
+    vim.api.nvim_create_user_command("LspList", function()
+      for _, c in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+        print(c.name, c.id)
+      end
+    end, { desc = "List active LSP clients" })
 
     -- Server-specific configs
     vim.lsp.config("emmet_ls", {
@@ -121,14 +127,16 @@ return {
       },
     })
 
-    vim.lsp.config("pyright", {
+    vim.lsp.config("basedpyright", {
       settings = {
         python = {
           analysis = {
-            typeCheckingMode = "off",
+            typeCheckingMode = "basic",
             autoSearchPaths = true,
+            autoImportCompletions = true,
             useLibraryCodeForTypes = true,
             diagnosticMode = "workspace",
+            reportUnknownParameterType = false,
           },
         },
       },
@@ -140,13 +148,13 @@ return {
 
     -- Enable all servers
     vim.lsp.enable({
+      "basedpyright",
       "cssls",
       "emmet_ls",
       "gopls",
       "html",
       "jsonls",
       "lua_ls",
-      "pyright",
       -- "svelte",
       -- "tailwindcss",
       "ts_ls",

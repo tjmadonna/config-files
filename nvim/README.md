@@ -24,6 +24,7 @@
 - vim
 
 ## Mason LSP Install
+- basedpyright
 - cssls
 - emmet_ls
 - gopls
@@ -32,7 +33,6 @@
 - js-debug-adapter
 - jsonls
 - lua_ls
-- pyright
 - svelte
 - tailwindcss
 - ts_ls
