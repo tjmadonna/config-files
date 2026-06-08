@@ -1,16 +1,12 @@
-local function organize_imports()
-  vim.lsp.buf.code_action({
-    context = {
-      only = { "source.organizeImports" },
-      diagnostics = vim.diagnostic.get(0),
-    },
-    apply = true,
-  })
-end
-
-local function py_organize_imports()
-  local isort_path = vim.fn.stdpath("data") .. "/mason/packages/isort/venv/bin/isort"
-  vim.cmd("silent !" .. isort_path .. " " .. vim.fn.expand("%") .. " --profile black")
+local function organize_imports(client_name)
+  if client_name == "pyright" then
+    require("conform").format({ formatters = { "isort" }, async = false, timeout_ms = 1000 })
+  else
+    vim.lsp.buf.code_action({
+      context = { only = { "source.organizeImports" }, diagnostics = vim.diagnostic.get(0) },
+      apply = true,
+    })
+  end
 end
 
 return {
@@ -87,22 +83,22 @@ return {
         opts.desc = "Show documentation for what is under cursor"
         keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-        if client and client.name == "pyright" then
-          vim.api.nvim_create_user_command("OrganizeImports", py_organize_imports, { desc = "Organize Imports" })
+        if client and vim.tbl_contains({ "pyright", "ts_ls", "svelte" }, client.name) then
+          if vim.fn.exists(":OrganizeImports") == 0 then
+            vim.api.nvim_create_user_command("OrganizeImports", function()
+              organize_imports(client.name)
+            end, { desc = "Organize Imports" })
+          end
         end
 
-        if client and vim.tbl_contains({ "ts_ls", "svelte" }, client.name) then
-          vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" })
-        end
-
-        if client and client.name == "svelte" then
-          vim.api.nvim_create_autocmd("BufWritePost", {
-            pattern = { "*.js", "*.ts" },
-            callback = function(ctx)
-              client:notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-            end,
-          })
-        end
+        -- if client and client.name == "svelte" then
+        --   vim.api.nvim_create_autocmd("BufWritePost", {
+        --     pattern = { "*.js", "*.ts" },
+        --     callback = function(ctx)
+        --       client:notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+        --     end,
+        --   })
+        -- end
       end,
     })
 
@@ -151,8 +147,8 @@ return {
       "jsonls",
       "lua_ls",
       "pyright",
-      "svelte",
-      "tailwindcss",
+      -- "svelte",
+      -- "tailwindcss",
       "ts_ls",
     })
   end,
