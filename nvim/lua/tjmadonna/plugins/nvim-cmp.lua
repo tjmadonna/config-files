@@ -10,6 +10,25 @@ return {
     "zbirenbaum/copilot-cmp", -- copilot integration with nvim-cmp
   },
   config = function()
+    -- patch until copilot is fixed
+    local monkeypatch = require("copilot_cmp.source")
+    monkeypatch.is_available = function(self)
+      -- client is stopped.
+      if self.client:is_stopped() or not self.client.name == "copilot" then
+        return false
+      end
+
+      local get_source_client = function()
+        local get_clients = vim.lsp.get_clients or vim.lsp.get_active_clients
+        return get_clients({
+          bufnr = vim.api.nvim_get_current_buf(),
+          id = self.client.id,
+        })
+      end
+
+      return next(get_source_client()) ~= nil
+    end
+
     require("copilot_cmp").setup()
 
     local cmp = require("cmp")
