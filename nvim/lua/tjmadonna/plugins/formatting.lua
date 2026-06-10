@@ -3,19 +3,23 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
+    local python_utils = require("tjmadonna.utils.python")
 
     conform.setup({
       formatters_by_ft = {
         css = { "prettier" },
         go = { "gofmt" },
         graphql = { "prettier" },
+        hbs = { "prettier" },
         html = { "prettier" },
         javascript = { "prettier" },
         javascriptreact = { "prettier" },
         json = { "prettier" },
+        less = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier" },
-        python = { "isort", "black" },
+        python = python_utils.has_ruff_config() and { "ruff_fix", "ruff_format" } or { "isort", "black" },
+        scss = { "prettier" },
         svelte = { "prettier" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
@@ -23,38 +27,10 @@ return {
       },
     })
 
-    local function find_pyproject()
-      local path = vim.fn.findfile("pyproject.toml", ".;")
-      if path == "" then
-        return nil
-      end
-      return vim.fn.fnamemodify(tostring(path), ":p")
-    end
-
-    local function has_isort_config(pyproject_path)
-      local file = io.open(pyproject_path, "r")
-      if not file then
-        return false
-      end
-      local content = file:read("*a")
-      file:close()
-      return content:find("%[tool%.isort%]") ~= nil
-    end
-
-    local function has_black_config(pyproject_path)
-      local file = io.open(pyproject_path, "r")
-      if not file then
-        return false
-      end
-      local content = file:read("*a")
-      file:close()
-      return content:find("%[tool%.black%]") ~= nil
-    end
-
     conform.formatters.isort = {
       prepend_args = function()
-        local pyproject = find_pyproject()
-        if pyproject and has_isort_config(pyproject) then
+        local pyproject = python_utils.find_pyproject()
+        if pyproject and python_utils.has_isort_config(pyproject) then
           return {}
         end
         return { "--profile", "black", "--line-length", "100" }
@@ -63,8 +39,8 @@ return {
 
     conform.formatters.black = {
       prepend_args = function()
-        local pyproject = find_pyproject()
-        if pyproject and has_black_config(pyproject) then
+        local pyproject = python_utils.find_pyproject()
+        if pyproject and python_utils.has_black_config(pyproject) then
           return {}
         end
         return { "--line-length", "100" }

@@ -162,13 +162,15 @@ return {
     local dapjs = require("dap-vscode-js")
 
     -- python
-    dap.adapters.python = {
+    local python_adapter = {
       type = "executable",
       command = "debugpy-adapter",
       options = {
         source_filetype = "python",
       },
     }
+    dap.adapters.python = python_adapter
+    dap.adapters.debugpy = python_adapter
 
     -- go
     dap.adapters.go = {
@@ -183,7 +185,7 @@ return {
     -- js
     dapjs.setup({
       adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-      debugger_path = vim.fn.stdpath("data") .. "/mason/packages/vscode-js-debug",
+      debugger_path = "js-debug-adapter",
     })
 
     -- dap ui setup

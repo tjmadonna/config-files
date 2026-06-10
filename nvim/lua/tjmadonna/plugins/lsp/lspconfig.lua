@@ -1,6 +1,8 @@
 local function organize_imports(client_name)
   if client_name == "basedpyright" then
-    require("conform").format({ formatters = { "isort" }, async = false, timeout_ms = 1000 })
+    local python = require("tjmadonna.utils.python")
+    local formatter = python.has_ruff_config() and "ruff_fix" or "isort"
+    require("conform").format({ formatters = { formatter }, async = false, timeout_ms = 1000 })
   else
     vim.lsp.buf.code_action({
       context = { only = { "source.organizeImports" }, diagnostics = vim.diagnostic.get(0) },
@@ -24,10 +26,10 @@ return {
     vim.diagnostic.config({
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = " ",
-          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
           [vim.diagnostic.severity.HINT] = "󰠠 ",
-          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
         },
       },
     })
@@ -90,15 +92,6 @@ return {
             end, { desc = "Organize Imports" })
           end
         end
-
-        -- if client and client.name == "svelte" then
-        --   vim.api.nvim_create_autocmd("BufWritePost", {
-        --     pattern = { "*.js", "*.ts" },
-        --     callback = function(ctx)
-        --       client:notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-        --     end,
-        --   })
-        -- end
       end,
     })
 
@@ -108,55 +101,20 @@ return {
       end
     end, { desc = "List active LSP clients" })
 
-    -- Server-specific configs
-    vim.lsp.config("emmet_ls", {
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
-
-    vim.lsp.config("lua_ls", {
-      settings = {
-        Lua = {
-          diagnostics = { globals = { "vim" } },
-          workspace = {
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
-            },
-          },
-        },
-      },
-    })
-
-    vim.lsp.config("basedpyright", {
-      settings = {
-        python = {
-          analysis = {
-            typeCheckingMode = "basic",
-            autoSearchPaths = true,
-            autoImportCompletions = true,
-            useLibraryCodeForTypes = true,
-            diagnosticMode = "workspace",
-            reportUnknownParameterType = false,
-          },
-        },
-      },
-    })
-
-    vim.lsp.config("ts_ls", {
-      root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
-    })
+    -- Server specific configs in after/lsp files
 
     -- Enable all servers
     vim.lsp.enable({
       "basedpyright",
+      "clangd",
       "cssls",
       "emmet_ls",
       "gopls",
       "html",
       "jsonls",
       "lua_ls",
-      -- "svelte",
-      -- "tailwindcss",
+      "svelte",
+      "tailwindcss",
       "ts_ls",
     })
   end,

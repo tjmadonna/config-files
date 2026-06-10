@@ -4,6 +4,7 @@ return {
   ft = "javascript,typescript,typescriptreact,javascriptreact,go,python",
   config = function()
     local lint = require("lint")
+    local python_utils = require("tjmadonna.utils.python")
 
     local function conditional_lint(filename, linter)
       -- disable linter if there is no config file
@@ -18,6 +19,7 @@ return {
       ["eslint_d"] = conditional_lint("*eslint", "eslint_d"),
       ["flake8"] = conditional_lint(".flake8", "flake8"),
       ["golangci-lint"] = { "golangcilint" },
+      ["ruff"] = { "ruff" },
     }
 
     lint.linters_by_ft = {
@@ -25,7 +27,7 @@ return {
       javascript = enabled_linters["eslint_d"],
       javascriptreact = enabled_linters["eslint_d"],
       svelte = enabled_linters["eslint_d"],
-      python = enabled_linters["flake8"],
+      python = python_utils.has_ruff_config() and enabled_linters["ruff"] or enabled_linters["flake8"],
       typescript = enabled_linters["eslint_d"],
       typescriptreact = enabled_linters["eslint_d"],
     }
