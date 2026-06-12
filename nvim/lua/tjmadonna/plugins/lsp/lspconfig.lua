@@ -3,9 +3,9 @@ local function organize_imports(client_name)
     local tools = require("tjmadonna.utils.tools")
     local formatters = tools.get_tools("python_formatters", { "ruff_fix", "isort" })
     if vim.tbl_contains(formatters, "ruff_fix") then
-      require("conform").format({ formatters = { "ruff_fix" }, async = false, timeout_ms = 1000 })
+      require("conform").format({ formatters = { "ruff_fix" }, async = true, timeout_ms = 3000 })
     elseif vim.tbl_contains(formatters, "isort") then
-      require("conform").format({ formatters = { "isort" }, async = false, timeout_ms = 1000 })
+      require("conform").format({ formatters = { "isort" }, async = true, timeout_ms = 3000 })
     end
   else
     vim.lsp.buf.code_action({
