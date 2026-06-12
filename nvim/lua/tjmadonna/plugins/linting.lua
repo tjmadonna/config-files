@@ -4,32 +4,16 @@ return {
   ft = "javascript,typescript,typescriptreact,javascriptreact,go,python",
   config = function()
     local lint = require("lint")
-    local python_utils = require("tjmadonna.utils.python")
-
-    local function conditional_lint(filename, linter)
-      -- disable linter if there is no config file
-      local files = vim.fn.glob("./" .. filename .. "*")
-      if files == "" then
-        return {}
-      end
-      return { linter }
-    end
-
-    local enabled_linters = {
-      ["eslint_d"] = conditional_lint("*eslint", "eslint_d"),
-      ["flake8"] = conditional_lint(".flake8", "flake8"),
-      ["golangci-lint"] = { "golangcilint" },
-      ["ruff"] = { "ruff" },
-    }
+    local tools = require("tjmadonna.utils.tools")
 
     lint.linters_by_ft = {
-      go = enabled_linters["golangci-lint"],
-      javascript = enabled_linters["eslint_d"],
-      javascriptreact = enabled_linters["eslint_d"],
-      svelte = enabled_linters["eslint_d"],
-      python = python_utils.has_ruff_config() and enabled_linters["ruff"] or enabled_linters["flake8"],
-      typescript = enabled_linters["eslint_d"],
-      typescriptreact = enabled_linters["eslint_d"],
+      go = { "golangcilint" },
+      javascript = tools.get_tools("javascript_linters", { "eslint_d" }),
+      javascriptreact = tools.get_tools("javascriptreact_linters", { "eslint_d" }),
+      svelte = tools.get_tools("svelte_linters", { "eslint_d" }),
+      python = tools.get_tools("python_linters", { "ruff", "flake8" }),
+      typescript = tools.get_tools("typescript_linters", { "eslint_d" }),
+      typescriptreact = tools.get_tools("typescriptreact_linters", { "eslint_d" }),
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -1,8 +1,12 @@
 local function organize_imports(client_name)
   if client_name == "basedpyright" then
-    local python = require("tjmadonna.utils.python")
-    local formatter = python.has_ruff_config() and "ruff_fix" or "isort"
-    require("conform").format({ formatters = { formatter }, async = false, timeout_ms = 1000 })
+    local tools = require("tjmadonna.utils.tools")
+    local formatters = tools.get_tools("python_formatters", { "ruff_fix", "isort" })
+    if vim.tbl_contains(formatters, "ruff_fix") then
+      require("conform").format({ formatters = { "ruff_fix" }, async = false, timeout_ms = 1000 })
+    elseif vim.tbl_contains(formatters, "isort") then
+      require("conform").format({ formatters = { "isort" }, async = false, timeout_ms = 1000 })
+    end
   else
     vim.lsp.buf.code_action({
       context = { only = { "source.organizeImports" }, diagnostics = vim.diagnostic.get(0) },

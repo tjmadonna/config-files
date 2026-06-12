@@ -59,4 +59,8 @@ opt.splitbelow = true
 -- turn off swapfile
 opt.swapfile = false
 
+-- loading .nvim.lua configuration
+vim.opt.exrc = true
+vim.opt.secure = true
+
 opt.iskeyword:append("-")
