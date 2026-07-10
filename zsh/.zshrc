@@ -37,6 +37,10 @@ _comp_options+=(globdots)		# Include hidden files.
 bindkey -v
 export KEYTIMEOUT=1
 
+# Use ctrl-p and ctrl-n to search history:
+bindkey '^p' up-line-or-search
+bindkey '^n' down-line-or-search
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect '^h' vi-backward-char
 bindkey -M menuselect '^k' vi-up-line-or-history
