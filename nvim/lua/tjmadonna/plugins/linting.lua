@@ -1,20 +1,29 @@
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
-  ft = "javascript,typescript,typescriptreact,javascriptreact,go,python",
+  ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "go", "python" },
   config = function()
     local lint = require("lint")
     local tools = require("tjmadonna.utils.tools")
 
+    -- All linters that may be used per filetype.
+    -- Which ones actually run is decided by vim.g.tools.linters.
+    local candidates = {
+      javascript = { "eslint_d" },
+      javascriptreact = { "eslint_d" },
+      svelte = { "eslint_d" },
+      python = { "ruff", "flake8" },
+      typescript = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
+    }
+
     lint.linters_by_ft = {
       go = { "golangcilint" },
-      javascript = tools.get_tools("javascript_linters", { "eslint_d" }),
-      javascriptreact = tools.get_tools("javascriptreact_linters", { "eslint_d" }),
-      svelte = tools.get_tools("svelte_linters", { "eslint_d" }),
-      python = tools.get_tools("python_linters", { "ruff", "flake8" }),
-      typescript = tools.get_tools("typescript_linters", { "eslint_d" }),
-      typescriptreact = tools.get_tools("typescriptreact_linters", { "eslint_d" }),
     }
+
+    for ft, c in pairs(candidates) do
+      lint.linters_by_ft[ft] = tools.get_tools("linters", ft, c)
+    end
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

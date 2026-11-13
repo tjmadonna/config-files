@@ -1,6 +1,8 @@
 local M = {}
 
--- Normalize vim.g value to a table (handles both string and table)
+-- Normalize a value to a table (handles both string and table)
+-- @param value string|table The value to normalize
+-- @return table|nil The normalized value as a table
 local function to_list(value)
   if type(value) == "string" then
     return { value }
@@ -10,16 +12,18 @@ local function to_list(value)
   return nil
 end
 
--- Returns allowed tools for a filetype global, filtered against a candidates list.
--- If the global is not set, returns empty table.
--- e.g. get_tools("python_linters", { "ruff", "flake8" })
-M.get_tools = function(key, candidates)
-  local global = vim.g[key]
-  if global == nil then
+---Returns the candidates enabled in vim.g.tools[kind][ft], in candidate order.
+---@param kind "formatters"|"linters" Which group in vim.g.tools to read
+---@param ft string Filetype, e.g. "python"
+---@param candidates string[] Tools this plugin config knows how to run
+---@return string[] tools Enabled tools; empty if nothing is configured
+M.get_tools = function(kind, ft, candidates)
+  local group = vim.g.tools and vim.g.tools[kind]
+  if type(group) ~= "table" then
     return {}
   end
 
-  local allowed = to_list(global)
+  local allowed = to_list(group[ft])
   if allowed == nil then
     return {}
   end
