@@ -33,6 +33,7 @@
 - js-debug-adapter
 - jsonls
 - lua_ls
+- rust-analyzer
 - svelte
 - tailwindcss
 - ts_ls
