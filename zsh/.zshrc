@@ -98,7 +98,7 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$P
 # Add Homebrew to path
 export PATH=/opt/homebrew/bin:$PATH
 
-NODE_VERSION=22
+NODE_VERSION=24
 
 # Add node to path
 export PATH=/opt/homebrew/opt/node@$NODE_VERSION/bin:$PATH
